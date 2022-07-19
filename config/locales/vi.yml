@@ -11,3 +11,5 @@ vi:
     new:
       title: "Đăng nhập"
       sign_in: "Đăng nhập"
+    create:
+      failure_message: "Đăng nhập thất bại, vui lòng thử lại"
