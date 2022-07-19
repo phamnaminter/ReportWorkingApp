@@ -1,0 +1,13 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  collation: utf8mb4_unicode_ci
+  host: mysql_test
+  port: 3306
+  pool: 5
+
+test:
+  <<: *default
+  database: db_test
+  username: user_test
+  password: password_test
