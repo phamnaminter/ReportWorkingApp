@@ -18,9 +18,13 @@ en:
     create:
       failure_message: "Can not confirm your account"
   users:
+    not_found: "User not found"
     user:
       delete: "Delete"
       delete_confirmation: "You sure?"
+      invalid_img_type: "must be a valid image format"
+      invalid_img_size: "should be less than 5MB"
+      file_size_exceed: "Maximum file size is 5MB. Please choose a smaller file."
     index:
       title: "Users List"
     new:
@@ -29,3 +33,19 @@ en:
     create:
       create_user_message: "Create User Successfully"
       create_user_error: "Create User Error"
+    edit:
+      title: "Edit Page"
+      welcome: "Edit your information"
+      change: "Change"
+      submit: "Submit"
+    update:
+      edit_success_message: "Edit Successfully"
+      edit_failure_message: "Edit Failure"
+    destroy:
+      deleted_message: "Delete Successfully"
+      delete_failed_message: "Delete Failure"
+    users_filter:
+      search_title: "Search user by filter"
+      email: "Email"
+      name: "Full name"
+      search: "Search"

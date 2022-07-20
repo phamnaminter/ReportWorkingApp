@@ -8,5 +8,7 @@
   <%= f.password_field :password, class: "form-control" %>
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
+  <%= f.label :change_avatar, class: "mt-16" %>
+  <%= f.file_field :avatar, class: "btn btn-info" %>
   <%= f.submit yield(:button_text), class: "btn btn-primary mt-16" %>
 <% end %>

@@ -1,5 +1,6 @@
 <% provide :title, t(".title") %>
 <h1><%= t ".users_list" %></h1>
+  <%= render "users_filter" %>
 <ul class="users">
   <%= render @users %>
 </ul>
