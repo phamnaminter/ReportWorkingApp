@@ -1,0 +1,13 @@
+vi:
+  base_title: "Báo cáo công việc"
+  account: "Tài khoản"
+  profile: "Thông tin cá nhân"
+  settings: "Cài đặt"
+  log_out: "Đăng xuất"
+  departments: "Bộ phận"
+  users: "Người dùng"
+  account: "Tài khoản"
+  sessions:
+    new:
+      title: "Đăng nhập"
+      sign_in: "Đăng nhập"
