@@ -4,12 +4,28 @@ vi:
   profile: "Thông tin cá nhân"
   settings: "Cài đặt"
   log_out: "Đăng xuất"
-  departments: "Bộ phận"
-  users: "Người dùng"
+  department: "Bộ phận"
+  user: "Người dùng"
   account: "Tài khoản"
+  create_new_user: "Tạo người dùng mới"
+  users_list: "Danh sách người dùng"
+  something_went_wrong: "Có một lỗi không xác định xảy ra. Vui lòng thử lại sau"
+  not_logged: "Bạn cần đăng nhập để sử dụng chức năng này"
   sessions:
     new:
       title: "Đăng nhập"
       sign_in: "Đăng nhập"
     create:
       failure_message: "Đăng nhập thất bại, vui lòng thử lại"
+  users:
+    user:
+      delete: "Xóa"
+      delete_confirmation: "Bạn có chắc chắn muốn xóa người dùng này không"
+    index:
+      title: "Danh sách tài khoản"
+    new:
+      title: "Thêm người dùng mới"
+      submit: "Tạo tài khoản"
+    create:
+      create_user_message: "Thêm mới tài khoản thành công"
+      create_user_error: "Có lỗi xảy ra khi thêm mới tài khoản"

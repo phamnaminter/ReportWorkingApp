@@ -7,6 +7,8 @@ class User < ApplicationRecord
             dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  enum role: {normal: 0, admin: 1}
+
   VALID_EMAIL_REGEX = Settings.regex.email
 
   validates :full_name, presence: true,
@@ -21,6 +23,8 @@ class User < ApplicationRecord
             length: {minimum: Settings.digits.length_6}
 
   has_secure_password
+
+  scope :sort_created_at, ->{order :created_at}
 
   before_save :downcase_email
 

@@ -4,12 +4,28 @@ en:
   profile: "Profile"
   settings: "Settings"
   log_out: "Logout"
-  departments: "Departments"
-  users: "Users"
+  department: "Departments"
+  user: "Users"
   account: "Account"
+  create_new_user: "Create new user"
+  users_list: "Users list"
+  something_went_wrong: "Something went wrong. Please try again later"
+  not_logged: "Please Log In"
   sessions:
     new:
       title: "Log in"
       sign_in: "Sign in"
     create:
       failure_message: "Can not confirm your account"
+  users:
+    user:
+      delete: "Delete"
+      delete_confirmation: "You sure?"
+    index:
+      title: "Users List"
+    new:
+      title: "New User"
+      submit: "Create account"
+    create:
+      create_user_message: "Create User Successfully"
+      create_user_error: "Create User Error"
