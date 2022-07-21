@@ -11,3 +11,5 @@ en:
     new:
       title: "Log in"
       sign_in: "Sign in"
+    create:
+      failure_message: "Can not confirm your account"
