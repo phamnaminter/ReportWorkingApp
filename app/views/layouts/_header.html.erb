@@ -10,7 +10,9 @@
               <%= t("user") %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to t("create_new_user"), new_user_path %></li>
+              <% if current_user.admin? %>
+                <li><%= link_to t("create_new_user"), new_user_path %></li>
+              <% end %>
               <li><%= link_to t("users_list"), users_path %></li>
             </ul>
           </li>
@@ -19,8 +21,8 @@
               <%= t ".account" %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to t("profile"), "#" %></li>
-              <li><%= link_to t("settings"), "#" %></li>
+              <li><%= link_to t("profile"), user_path(current_user) %></li>
+              <li><%= link_to t("settings"), edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li><%= link_to t("log_out"), logout_path, method: :delete %></li>
             </ul>
