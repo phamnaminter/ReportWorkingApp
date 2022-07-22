@@ -1,12 +1,13 @@
 module UsersHelper
-  def gravatar_for user, size: Settings.gravatar.default_size
-    if user.avatar.attached?
-      return image_tag(user.display_avatar, alt: user.full_name, class:
-                      "gravatar")
+  def gravatar_for object, width = Settings.user.small_avatar_width,
+    height = Settings.user.small_avatar_height
+    if object.avatar.attached?
+      return image_tag(object.display_avatar, class: "gravatar",
+        width: width, height: height)
     end
 
-    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-    gravatar_url = "#{Settings.gravatar.url}#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.full_name, class: "gravatar")
+    gravatar_url = Settings.gravatar.avatar_default_url
+    image_tag(gravatar_url, class: "gravatar",
+        width: width, height: height)
   end
 end

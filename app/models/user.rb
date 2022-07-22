@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  UPDATEABLE_ATTRS = %i(full_name email password
+    password_confirmation avatar).freeze
   has_many :relationships, dependent: :destroy
   has_many :departments, through: :relationships
   has_many :report_sends, class_name: :Report, foreign_key: :from_user,
@@ -45,8 +47,9 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
-  def display_avatar
-    avatar.variant(resize_to_limit: Settings.image.size_500_500)
+  def display_avatar width = Settings.gravatar.width_default,
+    height = Settings.gravatar.height_default
+    avatar.variant resize_to_limit: [width, height]
   end
 
   private

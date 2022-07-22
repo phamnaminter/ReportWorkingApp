@@ -1,0 +1,12 @@
+<div class="col-sm-6">
+  <div class="thumbnail">
+    <%= gravatar_for department, Settings.department.avatar_width, Settings.department.avatar_height %>
+    <p>
+      <strong><%= link_to department.name, department %></strong>
+    </p>
+    <p><%= department.description %></p>
+    <% if current_user.admin? %>
+      <%= button_to t(".edit"), edit_department_path(department), class: "btn btn-info" %>
+    <% end %>
+  </div>
+</div>

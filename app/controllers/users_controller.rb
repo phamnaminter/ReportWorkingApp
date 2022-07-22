@@ -49,8 +49,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :email, :password,
-                                 :password_confirmation, :avatar)
+    params.require(:user).permit User::UPDATEABLE_ATTRS
   end
 
   def find_user

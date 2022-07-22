@@ -9,8 +9,11 @@ en:
   account: "Account"
   create_new_user: "Create new user"
   users_list: "Users list"
+  create_new_department: "Create new department"
+  departments_list: "Departments list"
   something_went_wrong: "Something went wrong. Please try again later"
   not_logged: "Please Log In"
+  not_admin: "You are not allowed to access this page"
   sessions:
     new:
       title: "Log in"
@@ -49,3 +52,28 @@ en:
       email: "Email"
       name: "Full name"
       search: "Search"
+  departments:
+    not_found: "Department not found"
+    department:
+      delete: "Delete"
+      delete_confirmation: "You sure?"
+      invalid_img_type: "must be a valid image format"
+      invalid_img_size: "should be less than 5MB"
+      file_size_exceed: "Maximum file size is 5MB. Please choose a smaller file."
+      edit: "Edit"
+    index:
+      title: "Departments List"
+      description: "All of Departments"
+    create:
+      create_department_message: "Create department Successfully"
+      create_department_error: "Create department Error"
+    update:
+      edit_success_message: "Edit Successfully"
+      edit_failure_message: "Edit Failure"
+    destroy:
+      deleted_message: "Delete Successfully"
+      delete_failed_message: "Delete Failure"
+    new:
+      title: "New Department"
+      submit: "Create department"
+      welcome: "New Department"

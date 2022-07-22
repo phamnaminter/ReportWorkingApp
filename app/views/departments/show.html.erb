@@ -1,0 +1,6 @@
+<% provide :title, @department.name %>
+<div class="container-fluid bg-1 text-center">
+  <h3 class="margin"><%= @department.name %></h3>
+  <%= image_tag(@department.avatar, class: "img-responsive margin", width: Settings.department.avatar_width, height: Settings.department.avatar_height) %>
+  <h3><%= @department.description %></h3>
+</div>

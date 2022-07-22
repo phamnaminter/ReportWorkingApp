@@ -30,4 +30,9 @@ class ApplicationController < ActionController::Base
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
+
+  def require_admin
+    flash[:warning] = t "not_admin"
+    redirect_to(root_path) unless current_user.admin?
+  end
 end
