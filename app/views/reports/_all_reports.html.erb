@@ -1,0 +1,26 @@
+<div>
+  <h4>
+    <%= t ".all_report" %>
+    (<span>
+      <%= @reports.size %>
+    </span>)
+  </h4>
+</div>
+<%= form_tag "#", method: :put, remote: true, id: "checkbox-form" do %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= t ".ID" %></th>
+        <th><%= t ".department" %></th>
+        <th><%= t ".name" %></th>
+        <th><%= t ".date_reported" %></th>
+        <th><%= t ".date_created" %></th>
+        <th><%= t ".status" %></th>
+        <th><%= t ".action" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @reports %>
+    </tbody>
+  </table>
+<% end %>

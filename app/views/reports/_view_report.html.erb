@@ -1,0 +1,13 @@
+<%= form_for @report do |f| %>
+  <%= render "shared/error_messages", object: @report %>
+  <%= f.label :report_date %>
+  <%= f.date_field :report_date, class: "form-control", disabled: true %>
+  <%= f.label :today_plan %>
+  <%= f.text_area :today_plan, class: "form-control", disabled: true %>
+  <%= f.label :today_work %>
+  <%= f.text_area :today_work, class: "form-control", disabled: true %>
+  <%= f.label :today_problem %>
+  <%= f.text_area :today_problem, class: "form-control", disabled: true %>
+  <%= f.label :tomorow_plan %>
+  <%= f.text_area :tomorow_plan, class: "form-control", disabled: true %>
+<% end %>

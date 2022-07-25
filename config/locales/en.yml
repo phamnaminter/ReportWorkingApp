@@ -122,6 +122,12 @@ en:
       name: "Full name"
       search: "Search"
   reports:
+    index:
+      title: "Show all reports"
+      invalid_relationship: "Relationship not found"
+    show:
+      invalid_report: "Report not found"
+      title: "Report Information"
     new:
       submit: "Create Report"
       title: "Create new report"
@@ -129,4 +135,15 @@ en:
     create:
       create_report_message: "Create report successfully"
       create_report_error: "Create report failed"
-      invalid_department: "Department not_found"
+      invalid_department: "Department not found"
+      unprepared_manager: "Department does not have any managers"
+    filter_form:
+      id: "ID"
+      name: "Name"
+      department: "Department"
+      date_created: "Date Created"
+      date_reported: "Date Reported"
+      search: "Search"
+  time:
+    formats:
+      standard: "%B %d %Y"

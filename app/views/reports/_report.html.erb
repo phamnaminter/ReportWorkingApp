@@ -1,0 +1,11 @@
+<tr>
+  <td><%= report.id %></td>
+  <td><%= report.department.name %></td>
+  <td><%= link_to report.from_user.full_name, user_path(report.from_user.id) %></td>
+  <td><%= l report.report_date, format: :standard %></td>
+  <td><%= l report.created_at, format: :standard %></td>
+  <td><span class=<%= report.confirmed? ? "text-info" : "text-danger" %>><%= report.report_status %></span></td>
+  <td>
+    <%= link_to t(".detail"), department_report_path(report.department_id, report.id) %>
+  </td>
+</tr>
