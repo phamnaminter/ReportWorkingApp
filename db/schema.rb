@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_20_021556) do
+ActiveRecord::Schema.define(version: 2022_07_22_085831) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_021556) do
     t.string "tomorow_plan"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "report_status", default: 0
     t.index ["department_id"], name: "index_reports_on_department_id"
     t.index ["from_user_id"], name: "index_reports_on_from_user_id"
     t.index ["to_user_id"], name: "index_reports_on_to_user_id"
@@ -96,9 +97,6 @@ ActiveRecord::Schema.define(version: 2022_07_20_021556) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "reports"
-  add_foreign_key "comments", "users"
   add_foreign_key "relationships", "departments"
   add_foreign_key "relationships", "users"
   add_foreign_key "reports", "departments"

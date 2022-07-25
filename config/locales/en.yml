@@ -17,6 +17,8 @@ en:
   not_manager: "You are not allowed to access this page"
   edit: "Edit"
   unavaiable_data: "Unvaiable Data"
+  access_denied: "Access Denied"
+  unprepared_manager: "Department does not have any managers"
   sessions:
     new:
       title: "Log in"
@@ -86,6 +88,8 @@ en:
       delete_confirmation: "You sure?"
       total_member: "Total Members: "
       add_show: "Add new Member"
+      view_reports: "View Reports"
+      new_reports: "New Reports"
     departments_filter:
       name: "Name"
       description: "Description"
@@ -117,3 +121,12 @@ en:
       email: "Email"
       name: "Full name"
       search: "Search"
+  reports:
+    new:
+      submit: "Create Report"
+      title: "Create new report"
+      welcome: "Create new report of department"
+    create:
+      create_report_message: "Create report successfully"
+      create_report_error: "Create report failed"
+      invalid_department: "Department not_found"
