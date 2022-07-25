@@ -53,6 +53,8 @@ en:
       email: "Email"
       name: "Full name"
       search: "Search"
+    show:
+      joined_time: "Joined %{time} ago"
   departments:
     not_found: "Department not found"
     department:
