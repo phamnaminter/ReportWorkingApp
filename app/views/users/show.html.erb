@@ -5,10 +5,18 @@
       <h1>
         <%= gravatar_for @user, Settings.user.small_avatar_width, Settings.user.small_avatar_height %>
         <%= @user.full_name %>
+        <h5>
+          <span class="glyphicon glyphicon-play"></span>
+          <%= t ".joined_time", time: time_ago_in_words(@user.created_at) %>
+        </h5>
       </h1>
     </section>
   </aside>
-  <div class="col-md-8">
-    <h2><%= t "department" %></h2>
+</div>
+<div class="row">
+  <h2><%= t "department" %></h2>
+  <div class="row text-center slideanim">
+    <%= render @departments %>
   </div>
+  <%== pagy_bootstrap_nav @pagy %>
 </div>

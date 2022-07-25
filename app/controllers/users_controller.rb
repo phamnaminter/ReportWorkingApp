@@ -7,7 +7,10 @@ class UsersController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    @pagy, @departments = pagy @user.departments,
+                               items: Settings.department.per_page
+  end
 
   def new
     @user = User.new
