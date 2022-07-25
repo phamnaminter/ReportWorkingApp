@@ -1,0 +1,10 @@
+<%= form_for @department do |f| %>
+  <%= render "shared/error_messages", object: @department %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%= f.label :description %>
+  <%= f.text_area :description, class: "form-control" %>
+  <%= f.label :change_avatar, class: "mt-16" %>
+  <%= f.file_field :avatar, class: "btn btn-info" %>
+  <%= f.submit yield(:button_text), class: "btn btn-primary mt-16" %>
+<% end %>

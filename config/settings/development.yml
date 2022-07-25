@@ -8,11 +8,20 @@ regex:
 
 gravatar:
   url: "https://secure.gravatar.com/avatar/"
-  default_size: 80
-  size_view: 200
-  users_size: 50
+  avatar_default_url: "https://www.w3schools.com/bootstrap/paris.jpg"
+  width_default: 500
+  height_default: 500
 
 user:
+  per_page: 5
+  avatar_width: 300
+  avatar_height: 200
+  small_avatar_width: 80
+  small_avatar_height: 60
+
+department:
+  avatar_width: 400
+  avatar_height: 300
   per_page: 5
 
 role:
