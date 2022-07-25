@@ -6,7 +6,7 @@
     </p>
     <p><%= department.description %></p>
     <% if current_user.admin? %>
-      <%= button_to t(".edit"), edit_department_path(department), class: "btn btn-info" %>
+      <%= link_to t("edit"), edit_department_path(department), class: "btn btn-info" %>
     <% end %>
   </div>
 </div>

@@ -3,6 +3,7 @@ class Department < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :relationships, dependent: :destroy
   has_many :users, through: :relationships
+  has_one_attached :avatar
 
   validates :name, presence: true,
             length: {maximum: Settings.digits.length_50},
@@ -16,8 +17,6 @@ class Department < ApplicationRecord
                            message: I18n.t(".invalid_img_type")},
             size: {less_than: Settings.image.max_size.megabytes,
                    message: I18n.t(".invalid_img_size")}
-
-  has_one_attached :avatar
 
   scope :sort_created_at, ->{order :created_at}
 
