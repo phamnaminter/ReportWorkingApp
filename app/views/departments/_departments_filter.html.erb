@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <h3><%= t ".search_title" %></h3>
+  <%= form_tag departments_path, method: :get do %>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <%= text_field :filter, :name_search, value: params.dig(:filter, :name),
+                     class: "form-control", placeholder: t(".name") %>
+    </div>
+    <div class="input-group mt-16">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
+      <%= text_field :filter, :description_search, value: params.dig(:filter, :description),
+                     class: "form-control", placeholder: t(".description") %>
+    </div>
+    <%= submit_tag t(".search"), class: "btn btn-success mt-16" %>
+  <% end %>
+</div>

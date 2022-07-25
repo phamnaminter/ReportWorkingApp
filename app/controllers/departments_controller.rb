@@ -6,7 +6,9 @@ class DepartmentsController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    @pagy, @users = pagy @department.users
+  end
 
   def new
     @department = Department.new
@@ -64,8 +66,8 @@ class DepartmentsController < ApplicationController
     return Department.sort_created_at unless params[:filter]
 
     @departments = Department
-                   .by_name(params[:filter][:name_search])
-                   .by_description(params[:filter][:description_search])
+                   .by_name(params[:filter][:name])
+                   .by_description(params[:filter][:description])
                    .sort_created_at
   end
 

@@ -85,3 +85,9 @@ en:
     show:
       delete: "Delete"
       delete_confirmation: "You sure?"
+      total_member: "Total Members: "
+    departments_filter:
+      name: "Name"
+      description: "Description"
+      search: "Search"
+      search_title: "Search Department"

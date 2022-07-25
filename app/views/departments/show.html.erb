@@ -1,10 +1,21 @@
 <% provide :title, @department.name %>
-<div class="container-fluid bg-1 text-center">
-  <h3 class="margin"><%= @department.name %></h3>
+<div class="center jumbotron">
+  <h1><%= @department.name %></h1>
   <%= gravatar_for @department, Settings.department.avatar_width, Settings.department.avatar_height %>
-  <h3><%= @department.description %></h3>
+  <h2>
+    <%= t @department.description %>
+  </h2>
+  <% if current_user.admin? %>
+    <%= link_to t(".delete"), @department, method: :delete,
+        data: { confirm: t(".delete_confirmation") }, class: "btn btn-lg btn-danger" %>
+  <% end %>
 </div>
-<% if current_user.admin? %>
-  <%= link_to t(".delete"), @department, method: :delete,
-      data: { confirm: t(".delete_confirmation") }, class: "btn btn-danger mt-16" %>
+<% if @users.any? %>
+  <div>
+    <h3><%= "#{t(".total_member")} (#{@pagy.count})" %></h3>
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+    <%== pagy_bootstrap_nav @pagy %>
+  </div>
 <% end %>
