@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h3><%= t ".search_title" %></h3>
-  <%= form_tag users_path, method: :get do %>
+  <%= form_tag url, method: :get do %>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <%= text_field :filter, :email_search, value: params.dig(:filter, :email_search), class: "form-control", placeholder: t(".email") %>
@@ -10,5 +10,8 @@
       <%= text_field :filter, :full_name_search, value: params.dig(:filter, :full_name_search), class: "form-control", placeholder: t(".name") %>
     </div>
     <%= submit_tag t(".search"), class: "btn btn-success mt-16" %>
+    <% if @department.present? %>
+      <%= hidden_field_tag :department_id, @department.id %>
+    <% end %>
   <% end %>
 </div>

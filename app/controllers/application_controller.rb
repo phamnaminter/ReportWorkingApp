@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   before_action :set_locale
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
 
@@ -35,6 +36,22 @@ class ApplicationController < ActionController::Base
     return if current_user.admin?
 
     flash[:warning] = t "not_admin"
+    redirect_to root_path
+  end
+
+  def require_manager department_id
+    return if current_user.admin?
+
+    relationship = current_user.relationships
+                               .find_by department_id: department_id
+    return if relationship&.manager?
+
+    flash[:warning] = t "not_manager"
+    redirect_to root_path
+  end
+
+  def record_not_found
+    flash[:danger] = t "unavaiable_data"
     redirect_to root_path
   end
 end

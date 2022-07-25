@@ -14,7 +14,9 @@ en:
   something_went_wrong: "Something went wrong. Please try again later"
   not_logged: "Please Log In"
   not_admin: "You are not allowed to access this page"
+  not_manager: "You are not allowed to access this page"
   edit: "Edit"
+  unavaiable_data: "Unvaiable Data"
   sessions:
     new:
       title: "Log in"
@@ -48,11 +50,6 @@ en:
     destroy:
       deleted_message: "Delete Successfully"
       delete_failed_message: "Delete Failure"
-    users_filter:
-      search_title: "Search user by filter"
-      email: "Email"
-      name: "Full name"
-      search: "Search"
     show:
       joined_time: "Joined %{time} ago"
   departments:
@@ -88,8 +85,35 @@ en:
       delete: "Delete"
       delete_confirmation: "You sure?"
       total_member: "Total Members: "
+      add_show: "Add new Member"
     departments_filter:
       name: "Name"
       description: "Description"
       search: "Search"
       search_title: "Search Department"
+    user:
+      remove_user: "Remove User"
+      delete_confirmation: "Are you sure?"
+      remove_manager: "Remove manager"
+      set_user_manager: "Set user as manager"
+  relationships:
+    new:
+      department_not_found: "Department Not Found"
+    create:
+      success_message: "User has been added to the department"
+    update:
+      update_success: "User has been updated successfully"
+      update_failure: "Could not update role"
+    destroy:
+      destroy_success: "User has been deleted successfully"
+      destroy_failure: "Delete failed"
+    user:
+      add_user: "Add this user to department"
+    new:
+      title: "Add new users"
+  shared:
+    users_filter:
+      search_title: "Search user by filter"
+      email: "Email"
+      name: "Full name"
+      search: "Search"
