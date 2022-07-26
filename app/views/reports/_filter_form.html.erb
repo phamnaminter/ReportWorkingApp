@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h3><%= t ".search_title" %></h3>
-  <%= form_tag department_reports_path(@relationship.department_id), method: :get do %>
+  <%= form_tag department_reports_path(@department.id), method: :get do %>
     <div class="input-group col-md-4">
       <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
       <%= text_field :filter, :id, value: params.dig(:filter, :id), class: "form-control", placeholder: t(".id") %>

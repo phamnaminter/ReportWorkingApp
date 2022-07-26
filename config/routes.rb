@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     resources :departments do
       resources :reports
     end
-    resources :reports, only: %i(index create update destroy)
+    resources :reports
     resources :relationships, only: %i(new create destroy update)
+    resources :comments
   end
 end
