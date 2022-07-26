@@ -45,11 +45,24 @@ class User < ApplicationRecord
     where(["full_name LIKE (?)", "%#{name}%"]) if name.present?
   end)
 
+  scope :not_in_department, (lambda do |department_id|
+    User.where("NOT EXISTS( SELECT user_id from `relationships` as re where
+      re.user_id = users.id and department_id = '#{department_id}' )")
+  end)
+
   before_save :downcase_email
 
   def display_avatar width = Settings.gravatar.width_default,
     height = Settings.gravatar.height_default
     avatar.variant resize_to_limit: [width, height]
+  end
+
+  def join_department department
+    departments << department
+  end
+
+  def leave_department department
+    departments.delete department
   end
 
   private
