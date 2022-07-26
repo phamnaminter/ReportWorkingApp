@@ -30,6 +30,8 @@ relationship:
 
 report:
   per_page: 5
+  unverifyed: "unverifyed"
+  confirmed: "confirmed"
 
 role:
   user: 0

@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     resources :departments do
       resources :reports
     end
-    resources :reports
+    resources :reports do
+      member do
+        put :approve
+      end
+    end
     resources :relationships, only: %i(new create destroy update)
     resources :comments
   end
