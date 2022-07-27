@@ -27,6 +27,9 @@ department:
 relationship:
   per_page: 5
 
+report:
+  per_page: 5
+
 role:
   user: 0
   admin: 1

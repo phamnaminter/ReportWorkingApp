@@ -1,0 +1,14 @@
+<%= provide :title, t(".title") %>
+<div>
+  <h2 class="title-center">
+    <%= t ".title" %>
+  </h2>
+  <div class="col-xs-12 box-show">
+    <div>
+      <%= render "filter_form" %>
+    </div>
+    <div>
+      <%= render "all_reports", reports: @reports, page: @pagy %>
+    </div>
+  </div>
+</div>
