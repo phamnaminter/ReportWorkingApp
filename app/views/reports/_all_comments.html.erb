@@ -7,7 +7,9 @@
       <ul class="commentList">
         <%= render @comments %>
       </ul>
-      <%= render "new_comment" %>
+      <% if @report.unverifyed? %>
+        <%= render "new_comment" %>
+      <% end %>
     </div>
   </div>
 </div>

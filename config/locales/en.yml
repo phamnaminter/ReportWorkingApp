@@ -164,6 +164,9 @@ en:
     new_comment:
       your_comment: "Your Comment"
       add: "Add"
+    approve:
+      update_success: "Update Success"
+      update_failure: "Update Failure"
   comments:
     comment:
       edit: "Edit"

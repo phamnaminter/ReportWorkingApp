@@ -59,4 +59,10 @@ class Report < ApplicationRecord
   scope :for_employee, (lambda do |user_id|
     where(from_user_id: user_id) if user_id
   end)
+
+  def approve action
+    return unverifyed! if action.eql? Settings.report.unverifyed
+
+    confirmed! if action.eql? Settings.report.confirmed
+  end
 end

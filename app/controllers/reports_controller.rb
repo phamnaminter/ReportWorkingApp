@@ -49,6 +49,15 @@ class ReportsController < ApplicationController
     redirect_to department_reports_path(@report.department_id)
   end
 
+  def approve
+    if @report.approve params[:status]
+      flash[:success] = t ".update_success"
+    else
+      flash[:danger] = t ".update_failure"
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def report_params
