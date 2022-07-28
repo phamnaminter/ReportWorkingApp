@@ -158,6 +158,25 @@ en:
       delete_confirmation: "Are you sure?"
       edit: "Edit Report"
       delete: "Delete Report"
+    all_comments:
+      comment_box: "Comment Box"
+      edit_comment: "Edit Comments"
+    new_comment:
+      your_comment: "Your Comment"
+      add: "Add"
+  comments:
+    comment:
+      edit: "Edit"
+      delete: "Delete"
+      sure: "Sure?"
+    create:
+      create_comment_message: "Create Comment Successfully"
+      create_comment_error: "Create Comment Error"
+    update:
+      error: "Can not update your comment"
+    destroy:
+      deleted_message: "Delete Successfully"
+      delete_failed_message: "Delete Failed"
   time:
     formats:
       standard: "%B %d %Y"

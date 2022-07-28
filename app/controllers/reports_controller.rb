@@ -1,13 +1,16 @@
 class ReportsController < ApplicationController
-  before_action :find_department, :find_manager, :check_access,
-                only: %i(new create edit)
+  before_action :find_department, except: %i(show destroy)
+  before_action :find_manager, except: %i(index show destroy)
   before_action :find_relationship, :paginate_reports, only: :index
   before_action :find_report, except: %i(index new create)
   before_action :check_ownership, :require_unverifyed, only: %i(update destroy)
 
   def index; end
 
-  def show; end
+  def show
+    @comments = @report.comments.sort_created_at
+    @comment = @report.comments.build
+  end
 
   def new
     @report = Report.new
@@ -72,6 +75,8 @@ class ReportsController < ApplicationController
   end
 
   def find_relationship
+    return if current_user.admin?
+
     @relationship = Relationship.find_by department_id: params[:department_id],
                                          user_id: current_user.id
     return if @relationship.present?

@@ -8,6 +8,6 @@ module RelationshipsHelper
   end
 
   def user_manager? user, department
-    get_relationship(user, department).manager?
+    get_relationship(user, department)&.manager?
   end
 end
