@@ -1,10 +1,14 @@
 class Report < ApplicationRecord
+  include CreateNotify
+
   UPDATEABLE_ATTRS = %i(report_date today_plan today_work
     today_problem tomorow_plan to_user_id).freeze
   belongs_to :from_user, class_name: User.name
   belongs_to :to_user, class_name: User.name
   belongs_to :department
   has_many :comments, dependent: :destroy
+
+  before_create :notify
 
   enum report_status: {unverifyed: 0, confirmed: 1}
 
@@ -60,9 +64,20 @@ class Report < ApplicationRecord
     where(from_user_id: user_id) if user_id
   end)
 
+  scope :by_status, (lambda do |status|
+    where(report_status: status) if status
+  end)
+
   def approve action
     return unverifyed! if action.eql? Settings.report.unverifyed
 
     confirmed! if action.eql? Settings.report.confirmed
+  end
+
+  private
+
+  def notify
+    create_notify to_user_id, I18n.t("to_report"),
+                  routes.report_path(@report.id)
   end
 end

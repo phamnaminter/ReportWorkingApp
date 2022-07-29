@@ -21,6 +21,12 @@ en:
   unprepared_manager: "Department does not have any managers"
   ownership_error: "Permission denied"
   unverifyed_error: "Can not delete unverifyed report"
+  comment_notify: "One or more comments was added"
+  join_department: "You was added to new department"
+  role_department: "Your role was modified"
+  to_report: "You was received a report"
+  welecome_create: "Welecome to Report Working App"
+  update_profile: "Your Profile has been updated, please check now"
   sessions:
     new:
       title: "Log in"
@@ -183,3 +189,11 @@ en:
   time:
     formats:
       standard: "%B %d %Y"
+  notify_mailer:
+    new_notify:
+      hi: "Hi"
+      subject: "Notify From ReportWorkingApp"
+  notifies:
+    show:
+      error_message: "Something went wrong"
+      error_access: "Cam not access this page"

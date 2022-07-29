@@ -231,6 +231,10 @@ footer {
   font-size: 11px;
 }
 
+.unread {
+  background-color: $unread;
+}
+
 .actionBox {
   border-top: 1px dotted #bbb;
   padding: 10px;
@@ -251,4 +255,28 @@ footer {
 
 .w-100 {
   width: 100%
+}
+
+.notification {
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: $red;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  padding: 2px 7px;
+  border-radius: 50%;
+  background-color: $red;
+  color: $white;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
 }

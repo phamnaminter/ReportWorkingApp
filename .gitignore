@@ -86,3 +86,6 @@ config/environments/*.local.yml
 /.vscode
 /storage/*
 /config/application.yml
+
+# Ignore application configuration
+/config/application.yml

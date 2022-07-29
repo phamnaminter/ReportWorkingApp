@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include CreateNotify
+
   UPDATEABLE_ATTRS = %i(full_name email password
     password_confirmation avatar).freeze
   has_many :relationships, dependent: :destroy
@@ -8,6 +10,11 @@ class User < ApplicationRecord
   has_many :report_receives, class_name: :Report, foreign_key: :to_user,
             dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifies, dependent: :destroy
+
+  before_save :downcase_email
+  before_create :notify_create
+  before_update :notify_update
 
   enum role: {normal: 0, admin: 1}
 
@@ -50,8 +57,6 @@ class User < ApplicationRecord
       re.user_id = users.id and department_id = '#{department_id}' )")
   end)
 
-  before_save :downcase_email
-
   def display_avatar width = Settings.gravatar.width_default,
     height = Settings.gravatar.height_default
     avatar.variant resize_to_limit: [width, height]
@@ -69,5 +74,15 @@ class User < ApplicationRecord
 
   def downcase_email
     email.downcase!
+  end
+
+  def notify_create
+    create_notify id, I18n.t("welecome_create"),
+                  routes.user_path(id: id)
+  end
+
+  def notify_update
+    create_notify id, I18n.t("update_profile"),
+                  routes.user_path(id: id)
   end
 end

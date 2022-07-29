@@ -9,6 +9,7 @@ class RelationshipsController < ApplicationController
 
   def create
     @user.join_department @department
+
     flash[:success] = t ".success_message"
     redirect_back(fallback_location: root_path)
   end
