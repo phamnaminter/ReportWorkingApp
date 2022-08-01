@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def index; end
 
   def show
-    @pagy, @departments = pagy @user.departments,
+    @pagy, @departments = pagy @user.departments.includes([:avatar_attachment]),
                                items: Settings.department.per_page
   end
 
@@ -68,7 +68,9 @@ class UsersController < ApplicationController
   end
 
   def filter_user
-    return User.sort_created_at unless params[:filter]
+    unless params[:filter]
+      return User.includes([:avatar_attachment]).sort_created_at
+    end
 
     @users = User.by_email(params[:filter][:email_search])
                  .by_full_name(params[:filter][:full_name_search])

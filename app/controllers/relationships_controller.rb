@@ -54,7 +54,8 @@ class RelationshipsController < ApplicationController
   end
 
   def paginate_users
-    @pagy, @users = pagy filter_user.not_in_department @department.id
+    @pagy, @users = pagy filter_user.includes([:avatar_attachment])
+                                    .not_in_department @department.id
   end
 
   def filter_user

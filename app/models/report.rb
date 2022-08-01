@@ -1,14 +1,19 @@
 class Report < ApplicationRecord
   include CreateNotify
 
-  UPDATEABLE_ATTRS = %i(report_date today_plan today_work
-    today_problem tomorow_plan to_user_id).freeze
+  UPDATEABLE_ATTRS = [:report_date, :today_plan, :today_work,
+    :today_problem, :tomorow_plan, :to_user_id,
+    {comments_attributes: [:report_id, :description, :user_id]}].freeze
+
   belongs_to :from_user, class_name: User.name
   belongs_to :to_user, class_name: User.name
   belongs_to :department
   has_many :comments, dependent: :destroy
 
-  before_create :notify
+  after_create :notify
+
+  accepts_nested_attributes_for :comments, allow_destroy: true,
+    reject_if: ->(attrs){attrs[:description].blank?}
 
   enum report_status: {unverifyed: 0, confirmed: 1}
 
@@ -78,6 +83,6 @@ class Report < ApplicationRecord
 
   def notify
     create_notify to_user_id, I18n.t("to_report"),
-                  routes.report_path(@report.id)
+                  routes.report_path(id: id)
   end
 end

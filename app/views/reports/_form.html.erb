@@ -14,5 +14,11 @@
   <%= f.label :assign_to %><span class="red-text"> *</span>
   <%= f.collection_select :to_user_id, @managers, :user_id, :full_name, options ={:prompt =>
       t(".no_assign")}, :class =>"form-control" %>
+  <%= f.fields_for :comments do |comment| %>
+    <%= render "comment_fields", f: comment %>
+  <% end %>
+  <div class="links">
+    <%= link_to_add_association t(".add_comment"), f, :comments, class: "btn btn-success mt-16" %>
+  </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary mt-16 form-control" %>
 <% end %>
