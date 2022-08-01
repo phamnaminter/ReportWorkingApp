@@ -6,10 +6,6 @@
       <%= text_field :filter, :id, value: params.dig(:filter, :id), class: "form-control", placeholder: t(".id") %>
     </div>
     <div class="input-group mt-16 col-md-6">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-      <%= text_field :filter, :department, value: params.dig(:filter, :department), class: "form-control", placeholder: t(".department") %>
-    </div>
-    <div class="input-group mt-16">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <%= text_field :filter, :name, value: params.dig(:filter, :name), class: "form-control", placeholder: t(".name") %>
     </div>
@@ -17,9 +13,9 @@
       <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
       <%= date_field :filter, :date_reported, value: params.dig(:filter, :date_reported), class: "form-control", placeholder: t(".date_reported") %>
     </div>
-    <div class="input-group mt-16 col-md-4">
+    <div class="input-group mt-16 col-md-5">
       <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-      <%= date_field :filter, :date_created, value: params.dig(:filter, :date_created), class: "form-control", placeholder: t(".date_created") %>
+      <%= select :filter, :status, Report.report_statuses.keys, {include_blank: true, selected: (@filter[:status] if @filter)}, class: "form-control" %>
     </div>
     <%= submit_tag t(".search"), class: "btn btn-success mt-16" %>
   <% end %>

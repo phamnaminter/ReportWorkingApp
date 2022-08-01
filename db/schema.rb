@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_22_085831) do
+ActiveRecord::Schema.define(version: 2022_07_26_055752) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 2022_07_22_085831) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_departments_on_name", unique: true
+  end
+
+  create_table "notifies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "msg"
+    t.string "link"
+    t.integer "read", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifies_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -97,6 +107,7 @@ ActiveRecord::Schema.define(version: 2022_07_22_085831) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "notifies", "users"
   add_foreign_key "relationships", "departments"
   add_foreign_key "relationships", "users"
   add_foreign_key "reports", "departments"

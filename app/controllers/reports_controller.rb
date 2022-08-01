@@ -4,8 +4,11 @@ class ReportsController < ApplicationController
   before_action :find_relationship, :paginate_reports, only: :index
   before_action :find_report, except: %i(index new create)
   before_action :check_ownership, :require_unverifyed, only: %i(update destroy)
+  before_action :prepare_report, only: :create
 
-  def index; end
+  def index
+    @filter = params[:filter]
+  end
 
   def show
     @comments = @report.comments.sort_created_at
@@ -17,8 +20,6 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = @department.reports.build report_params
-                                 .merge from_user_id: current_user.id
     if @report.save
       flash[:success] = t ".create_report_message"
       redirect_to root_path
@@ -111,6 +112,7 @@ class ReportsController < ApplicationController
                        .by_name(filter[:name])
                        .by_created_at(filter[:date_created])
                        .by_report_date(filter[:date_reported])
+                       .by_status(filter[:status])
                        .sort_created_at
   end
 
@@ -135,5 +137,10 @@ class ReportsController < ApplicationController
 
     flash[:warning] = t "unverifyed_error"
     redirect_to root_path
+  end
+
+  def prepare_report
+    @report = @department.reports.build report_params
+              .merge from_user_id: current_user.id
   end
 end

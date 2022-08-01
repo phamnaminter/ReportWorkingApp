@@ -1,5 +1,6 @@
 <% provide :title, t(".title") %>
 <h1><%= t ".users_list" %></h1>
+<%= link_to  @department.name, department_path(@department.id), class: "btn btn-info mb-16" %>
 <%= render("shared/users_filter", url: new_relationship_path) %>
 <ul class="users">
   <%= render partial: "user", collection: @users, as: :user %>

@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
   include SessionsHelper
+  include NotifiesHelper
 
-  before_action :set_locale
+  before_action :set_locale, :load_notifies
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
@@ -53,5 +54,11 @@ class ApplicationController < ActionController::Base
   def record_not_found
     flash[:danger] = t "unavaiable_data"
     redirect_to root_path
+  end
+
+  def load_notifies
+    return unless current_user
+
+    @notifies = current_user.notifies
   end
 end

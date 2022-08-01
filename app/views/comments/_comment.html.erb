@@ -9,7 +9,7 @@
       <span id="comment_<%= comment.id %>"><%= comment.description %></span>
     </p>
     <span class="date sub-text"><%= time_ago_in_words comment.created_at %></span>
-    <% if current_user.admin? || current_user.id.eql?(comment.user_id) %>
+    <% action_comment_access? %>
       <span>|</span>
       <%= link_to t(".delete"), comment, method: :delete,
           data: { confirm: t(".sure") }, class: "action-comment text-danger" %>

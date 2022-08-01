@@ -9,10 +9,10 @@
     <%= hidden_field_tag :department_id, "", value: @department.id, class: "form-control", placeholder: t(".email") %>
     <% if current_user.admin? || user_manager?(current_user, @department) %>
       <%= submit_tag t(".add_show"), name: nil, class: "btn btn-lg btn-info" %>
-    <% else %>
+    <% elsif employee?(current_user, @department) %>
       <%= link_to t(".new_reports"), new_department_report_path(@department.id), method: :get, class: "btn btn-lg btn-primary" %>
+      <%= link_to t(".view_reports"), department_reports_path(@department.id), method: :get, class: "btn btn-lg btn-success" %>
     <% end %>
-    <%= link_to t(".view_reports"), department_reports_path(@department.id), method: :get, class: "btn btn-lg btn-success" %>
     <% if current_user.admin? %>
       <%= link_to t(".delete"), @department, method: :delete,
         data: { confirm: t(".delete_confirmation") }, class: "btn btn-lg btn-danger" %>

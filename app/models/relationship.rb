@@ -1,6 +1,10 @@
 class Relationship < ApplicationRecord
+  include CreateNotify
+
   belongs_to :user
   belongs_to :department
+
+  before_create :notify
 
   delegate :full_name, to: :user
 
@@ -14,5 +18,12 @@ class Relationship < ApplicationRecord
     return manager! if role.eql? Settings.role.manager
 
     employee! if role.eql? Settings.role.employee
+  end
+
+  private
+
+  def notify
+    create_notify user_id, I18n.t("role_department"),
+                  routes.department_path(id: department.id)
   end
 end
