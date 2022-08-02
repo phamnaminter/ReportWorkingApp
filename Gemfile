@@ -37,6 +37,8 @@ gem "mini_magick", "4.9.5"
 gem "faker", "2.1.2"
 
 gem "figaro"
+
+gem "cocoon"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 # Use Active Model has_secure_password
@@ -57,10 +59,12 @@ group :development, :test do
 end
 
 group :development do
+  gem "bullet"
   gem "listen", "~> 3.2"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", ">= 3.3.0"
+  gem "xmpp4r"
 end
 
 group :test do

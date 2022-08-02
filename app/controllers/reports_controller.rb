@@ -17,6 +17,7 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    @report.comments.build
   end
 
   def create

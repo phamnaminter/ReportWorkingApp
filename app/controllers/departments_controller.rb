@@ -8,7 +8,7 @@ class DepartmentsController < ApplicationController
   def index; end
 
   def show
-    @pagy, @users = pagy @department.users
+    @pagy, @users = pagy @department.users.includes([:avatar_attachment])
   end
 
   def new
@@ -64,12 +64,15 @@ class DepartmentsController < ApplicationController
   end
 
   def filter_department
-    return Department.sort_created_at unless params[:filter]
+    unless params[:filter]
+      return Department.sort_created_at.includes([:avatar_attachment])
+    end
 
     @departments = Department
                    .by_name(params[:filter][:name])
                    .by_description(params[:filter][:description])
                    .sort_created_at
+                   .includes([:avatar_attachment])
   end
 
   def find_department
