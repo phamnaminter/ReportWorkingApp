@@ -46,4 +46,18 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+  host = ENV.fetch("host", "localhost:3000")
+  config.action_mailer.default_url_options = {
+    host: host,
+    protocol: "http"
+  }
+
+  ActionMailer::Base.smtp_settings = {
+    address: ENV["mail_address"],
+    port: 587,
+    authentication: :plain,
+    user_name: ENV["mail_user_name"],
+    password: ENV["mail_user_password"],
+    enable_starttls_auto: true
+  }
 end

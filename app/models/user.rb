@@ -13,8 +13,8 @@ class User < ApplicationRecord
   has_many :notifies, dependent: :destroy
 
   before_save :downcase_email
-  before_create :notify_create
-  before_update :notify_update
+  after_create :notify_create
+  after_update :notify_update
 
   enum role: {normal: 0, admin: 1}
 
@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates :email, presence: true,
             length: {maximum: Settings.digits.length_255},
             format: {with: VALID_EMAIL_REGEX},
-            uniqueness: true
+            uniqueness: {case_sensitive: true}
 
   validates :password, presence: true,
             length: {minimum: Settings.digits.length_6},

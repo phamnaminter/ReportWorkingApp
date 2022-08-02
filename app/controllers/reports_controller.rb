@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
-  before_action :find_department, except: %i(show destroy)
+  before_action :logged_in_user
+  before_action :find_department, except: :destroy
   before_action :find_manager, except: %i(index show destroy)
   before_action :find_relationship, :paginate_reports, only: :index
   before_action :find_report, except: %i(index new create)
@@ -57,7 +58,7 @@ class ReportsController < ApplicationController
     else
       flash[:danger] = t ".update_failure"
     end
-    redirect_back(fallback_location: root_path)
+    redirect_to root_path
   end
 
   private
@@ -74,14 +75,7 @@ class ReportsController < ApplicationController
     @managers = Relationship.department_managers @department.id
     return if @managers.present?
 
-    flash[:warning] = t "unprepared_manager"
-    redirect_to root_path
-  end
-
-  def check_access
-    return if current_user.relationships.find_by department_id: @department.id
-
-    flash[:warning] = t "access_denied"
+    flash[:danger] = t "unprepared_manager"
     redirect_to root_path
   end
 
@@ -92,7 +86,7 @@ class ReportsController < ApplicationController
                                          user_id: current_user.id
     return if @relationship.present?
 
-    flash[:warning] = t ".invalid_relationship"
+    flash[:danger] = t ".invalid_relationship"
     redirect_to root_path
   end
 
@@ -129,14 +123,14 @@ class ReportsController < ApplicationController
   def check_ownership
     return if @report.from_user_id.eql? current_user.id
 
-    flash[:warning] = t "ownership_error"
+    flash[:danger] = t "ownership_error"
     redirect_to root_path
   end
 
   def require_unverifyed
     return if @report.unverifyed?
 
-    flash[:warning] = t "unverifyed_error"
+    flash[:danger] = t "unverifyed_error"
     redirect_to root_path
   end
 

@@ -7,7 +7,7 @@ class Department < ApplicationRecord
 
   validates :name, presence: true,
             length: {maximum: Settings.digits.length_50},
-            uniqueness: true
+            uniqueness: {case_sensitive: true}
 
   validates :description, presence: true,
             length: {maximum: Settings.digits.length_255}

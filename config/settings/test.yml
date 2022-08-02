@@ -1,0 +1,46 @@
+digits:
+  length_50: 50
+  length_255: 255
+  length_6: 6
+
+regex:
+  email: !ruby/regexp '/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/'
+
+gravatar:
+  url: "https://secure.gravatar.com/avatar/"
+  avatar_default_url: "https://www.w3schools.com/bootstrap/paris.jpg"
+  width_default: 500
+  height_default: 500
+
+user:
+  per_page: 5
+  avatar_width: 300
+  avatar_height: 200
+  small_avatar_width: 80
+  small_avatar_height: 60
+  tiny_avatar_height: 40
+
+department:
+  avatar_width: 400
+  avatar_height: 300
+  per_page: 5
+
+relationship:
+  per_page: 5
+
+report:
+  per_page: 5
+  unverifyed: "unverifyed"
+  confirmed: "confirmed"
+
+role:
+  user: 0
+  admin: 1
+  manager: "manager"
+  employee: "employee"
+
+image:
+  max_size: 5
+  accept_format: ["image/jpeg", "image/gif", "image/png"]
+  accept_format_html: "image/jpeg,image/gif,image/png"
+  size_500_500: [50, 50]
