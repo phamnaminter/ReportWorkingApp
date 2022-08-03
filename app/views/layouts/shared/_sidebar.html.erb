@@ -31,10 +31,18 @@
     </li>
     <% active_context = active_link?(includes: ["new_department_path", "departments_path"]) %>
     <% if current_user.admin? %>
-      <%= nav_context :components, t("manager"), icon: "cog", active_link: active_context do %>
-        <%= active_link_to t("create_new_department"), new_department_path, class: "collapse-item" %>
-        <%= active_link_to t("departments_list"), departments_path, class: "collapse-item" %>
-      <% end %>
+      <li class="nav-item ">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#components" aria-expanded="true" aria-controls="components">
+          <i class="fas fa-fw fa-cog"></i>
+          <span><%= t("manager") %></span>
+        </a>
+        <div id="components" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div class="bg-white py-2 collapse-inner rounded">
+          <%= active_link_to t("create_new_department"), new_department_path, class: 'collapse-item' %>
+          <%= active_link_to t("departments_list"), departments_path, class: 'collapse-item' %>
+          </div>
+        </div>
+      </li>
       <div class="sidebar-heading">
         <%= t "user" %>
       </div>

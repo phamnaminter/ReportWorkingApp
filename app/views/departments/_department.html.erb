@@ -1,12 +1,17 @@
-<div class="col-sm-6">
-  <div class="thumbnail">
-    <%= gravatar_for department, Settings.department.avatar_width, Settings.department.avatar_height %>
-    <p>
-      <strong><%= link_to department.name, department %></strong>
-    </p>
-    <p><%= department.description %></p>
+<tr>
+  <td>
+    <%= department.id %>
+  </td>
+  <td><%= link_to department.name, department %></td>
+  <td><%= l department.created_at, format: :standard %></td>
+  <td><%= l department.updated_at, format: :standard %></td>
+  <td>
     <% if current_user.admin? %>
-      <%= link_to t("edit"), edit_department_path(department), class: "btn btn-info" %>
+      <%= link_to t("edit"), edit_department_path(department), class: "text-info" %>
     <% end %>
-  </div>
-</div>
+  </td>
+  <td>
+    <%= link_to t(".delete"), @department, method: :delete,
+      data: { confirm: t(".delete_confirmation") }, class: "text-danger" %>
+  </td>
+</tr>
