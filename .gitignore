@@ -16,7 +16,7 @@
 !/tmp/.keep
 
 # Used by dotenv library to load environment variables.
-# .env
+.env
 
 # Ignore Byebug command history file.
 .byebug_history
@@ -86,6 +86,4 @@ config/environments/*.local.yml
 /.vscode
 /storage/*
 /config/application.yml
-
-# Ignore application configuration
-/config/application.yml
+/public/assets/*
