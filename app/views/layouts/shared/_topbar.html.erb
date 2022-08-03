@@ -15,7 +15,7 @@
         <%= link_to t("vi"), locale: :vi %>
       </span>
     </li>
-    <% if logged_in? %>
+    <% if user_signed_in? %>
       <%= render "layouts/shared/notifications" %>
       <div class="topbar-divider d-none d-sm-block"></div>
       <%= render "layouts/shared/user_nav" %>

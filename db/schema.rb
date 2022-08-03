@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_055752) do
+ActiveRecord::Schema.define(version: 2022_08_03_074126) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2022_07_26_055752) do
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "report_id"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_comments_on_report_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2022_07_26_055752) do
 
   create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_departments_on_name", unique: true
@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(version: 2022_07_26_055752) do
     t.bigint "to_user_id"
     t.bigint "department_id"
     t.datetime "report_date"
-    t.string "today_plan"
-    t.string "today_work"
-    t.string "today_problem"
-    t.string "tomorow_plan"
+    t.text "today_plan"
+    t.text "today_work"
+    t.text "today_problem"
+    t.text "tomorow_plan"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "report_status", default: 0
@@ -91,22 +91,31 @@ ActiveRecord::Schema.define(version: 2022_07_26_055752) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "email"
     t.string "phone"
     t.string "full_name"
-    t.string "password_digest"
-    t.string "remember_digest"
-    t.string "activation_digest"
-    t.boolean "activation"
     t.integer "role", default: 0
-    t.datetime "activation_at"
-    t.datetime "reset_digest"
-    t.datetime "reset_sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "reports"
+  add_foreign_key "comments", "users"
   add_foreign_key "notifies", "users"
   add_foreign_key "relationships", "departments"
   add_foreign_key "relationships", "users"

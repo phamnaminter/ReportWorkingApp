@@ -1,8 +1,8 @@
 class DepartmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :paginate_departments, only: :index
   before_action :find_department, except: %i(index new create)
   before_action :require_admin, except: %i(index show)
-  before_action :logged_in_user
   Pagy::DEFAULT[:items] = Settings.department.per_page
 
   def index; end

@@ -38,6 +38,7 @@ en:
   logout_modal_title: "Ready to Leave?"
   logout_modal_content: "Select Logout below if you are ready to end your current session."
   cancel: "Cancel"
+  hello: "Hello"
   sessions:
     new:
       title: "Log in"
@@ -214,3 +215,22 @@ en:
     show:
       error_message: "Something went wrong"
       error_access: "Cam not access this page"
+  devise:
+    sessions:
+      new:
+        sign_in: "Sign In"
+    unlocks:
+      new:
+        title: "Resend 2 unlock instructions"
+        submit: "Resend unlock instructions"
+    shared:
+      links:
+        log_in: "Log In"
+        forgot_password: "Forgot your password?"
+        sign_up: "Sign Up"
+        instructions_lost: "Didn't receive confirmation instructions?"
+        instructions_unlocked: :"Didn't receive unlock instructions?"
+    passwords:
+      new:
+        forgot_password: "Forgot your password?"
+        send_me_reset: "Send me reset password instructions"

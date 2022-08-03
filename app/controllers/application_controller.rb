@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in_user
-    return if logged_in?
+    return if user_signed_in?
 
     flash[:danger] = t "not_logged"
     store_location
-    redirect_to login_path
+    redirect_to new_user_session_path
   end
 
   def redirect_back_or default
