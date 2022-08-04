@@ -3,13 +3,36 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
+import * as ActiveStorage from "@rails/activestorage"
+import "channels"
+import Chartkick from "chartkick"
+import Chart from "chart.js"
 
-require("jquery")
-import "bootstrap"
+import "jquery"
+import 'popper.js'
+import "bootstrap/dist/js/bootstrap.bundle"
+import "jquery.easing/jquery.easing"
+import '@fortawesome/fontawesome-free/js/all'
+import datatable from 'imports-loader?define=>false!datatables.net'
+import datatableBS4 from 'imports-loader?define=>false!datatables.net-bs4'
+import './shared/sb-admin-2'
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+Chartkick.use(Chart)
+
+datatable(window, $)
+datatableBS4(window, $)
+
+// Examples
+import './shared/demo/datatables-demo'
+import './shared/demo/chart-area-demo'
+import './shared/demo/chart-bar-demo'
+import './shared/demo/chart-pie-demo'
+
 require("@nathanvda/cocoon")
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
