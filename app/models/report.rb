@@ -20,8 +20,7 @@ class Report < ApplicationRecord
   delegate :full_name, to: :from_user
   delegate :name, to: :department
 
-  validates :report_date, presence: true,
-            length: {maximum: Settings.digits.length_50}
+  validates :report_date, presence: true
 
   validates :today_plan, presence: true,
             length: {maximum: Settings.digits.length_255}
