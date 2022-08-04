@@ -1,5 +1,7 @@
 en:
-  base_title: "Report Working App"
+  en: "English"
+  vi: "Vietnamese"
+  base_title: "Report App"
   account: "Account"
   profile: "Profile"
   settings: "Settings"
@@ -7,7 +9,12 @@ en:
   department: "Departments"
   user: "Users"
   account: "Account"
-  create_new_user: "Create new user"
+  report: "Report"
+  new_report: "New Report"
+  report_list: "Report List"
+  create_new_user: "Create User"
+  manager_user: "Manager User"
+  manager: "Manager"
   users_list: "Users list"
   create_new_department: "Create new department"
   departments_list: "Departments list"
@@ -27,6 +34,10 @@ en:
   to_report: "You was received a report"
   welecome_create: "Welecome to Report Working App"
   update_profile: "Your Profile has been updated, please check now"
+  copy_right: "Copyright @ Report Working 2022"
+  logout_modal_title: "Ready to Leave?"
+  logout_modal_content: "Select Logout below if you are ready to end your current session."
+  cancel: "Cancel"
   sessions:
     new:
       title: "Log in"

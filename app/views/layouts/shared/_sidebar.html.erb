@@ -1,0 +1,58 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%= root_path %>">
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3"><%= t "base_title" %></div>
+  </a>
+  <% if logged_in? %>
+    <div class="sidebar-heading">
+      <%= t "report" %>
+    </div>
+    <li class="nav-item <%= add_active_class users_path %>">
+      <a class="nav-link" href="<%= users_path %>">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span><%= t("new_report") %></span>
+      </a>
+    </li>
+    <li class="nav-item <%= add_active_class users_path %>">
+      <a class="nav-link" href="<%= users_path %>">
+        <i class="fas fa-fw fa-table"></i>
+        <span><%= t("report_list") %></span></a>
+    </li>
+    <hr class="sidebar-divider d-none d-md-block">
+      <div class="sidebar-heading">
+        <%= t("department") %>
+      </div>
+    <li class="nav-item <%= add_active_class departments_path %>">
+      <a class="nav-link" href="<%= departments_path %>">
+        <i class="fas fa-fw fa-table"></i>
+        <span><%= t "manager_user" %></span></a>
+    </li>
+    <% active_context = active_link?(includes: ["new_department_path", "departments_path"]) %>
+    <% if current_user.admin? %>
+      <%= nav_context :components, t("manager"), icon: "cog", active_link: active_context do %>
+        <%= active_link_to t("create_new_department"), new_department_path, class: "collapse-item" %>
+        <%= active_link_to t("departments_list"), departments_path, class: "collapse-item" %>
+      <% end %>
+      <div class="sidebar-heading">
+        <%= t "user" %>
+      </div>
+      <li class="nav-item <%= add_active_class new_user_path %>">
+        <a class="nav-link" href="<%= new_user_path %>">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span><%= t "create_new_user" %></span>
+        </a>
+      </li>
+      <li class="nav-item <%= add_active_class(users_path) %>">
+        <a class="nav-link" href="<%= users_path %>">
+          <i class="fas fa-fw fa-table"></i>
+          <span><%= t "users_list" %></span></a>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    <% end %>
+  <% end %>
+</ul>

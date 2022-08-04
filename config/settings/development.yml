@@ -19,6 +19,7 @@ user:
   small_avatar_width: 80
   small_avatar_height: 60
   tiny_avatar_height: 40
+  tiny_avatar_width: 40
 
 department:
   avatar_width: 400
