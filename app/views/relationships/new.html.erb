@@ -1,8 +1,46 @@
 <% provide :title, t(".title") %>
-<h1><%= t ".users_list" %></h1>
-<%= link_to  @department.name, department_path(@department.id), class: "btn btn-info mb-16" %>
 <%= render("shared/users_filter", url: new_relationship_path) %>
-<ul class="users">
-  <%= render partial: "user", collection: @users, as: :user %>
-</ul>
-<%== pagy_bootstrap_nav @pagy %>
+<%= form_for @relationship do |f| %>
+  <div class="card mb-4 py-3 border-bottom-success">
+    <div class="card-body">
+      <p class="text-primary">Select department to add user:</p>
+      <%= f.collection_select :department, @departments, :id, :name, options ={},
+                            class: "js-example-basic-multiple form-control", multiple: "multiple" %>
+    </div>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary"><%= t ".users_list" %></h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th></th>
+              <th><%= t ".id" %></th>
+              <th><%= t ".email" %></th>
+              <th><%= t ".full_name" %></th>
+              <th><%= t ".role" %></th>
+              <th><%= t ".date_created" %></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th><%= t ".id" %></th>
+              <th><%= t ".email" %></th>
+              <th><%= t ".full_name" %></th>
+              <th><%= t ".role" %></th>
+              <th><%= t ".date_created" %></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <%= render partial: "user", collection: @users, as: :user, locals: {f: f} %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "Apply", class: "col-md-2 btn btn-primary" %>
+<% end %>

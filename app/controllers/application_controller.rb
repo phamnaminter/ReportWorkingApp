@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale, :load_notifies
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from CanCan::AccessDenied, with: :access_denied
 
   private
 
@@ -33,13 +34,6 @@ class ApplicationController < ActionController::Base
     session[:forwarding_url] = request.original_url if request.get?
   end
 
-  def require_admin
-    return if current_user.admin?
-
-    flash[:warning] = t "not_admin"
-    redirect_to root_path
-  end
-
   def require_manager department_id
     return if current_user.admin?
 
@@ -60,5 +54,10 @@ class ApplicationController < ActionController::Base
     return unless current_user
 
     @notifies = current_user.notifies
+  end
+
+  def access_denied
+    flash[:warning] = t "access_denied"
+    redirect_to root_path
   end
 end

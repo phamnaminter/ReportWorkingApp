@@ -1,19 +1,37 @@
 <% provide :title, t(".title") %>
 <%= render("shared/users_filter", url: users_path) %>
-<h1 class="text-center"><%= t ".users_list" %></h1>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th><%= t ".id" %></th>
-      <th><%= t ".email" %></th>
-      <th><%= t ".full_name" %></th>
-      <th><%= t ".role" %></th>
-      <th><%= t ".date_created" %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @users %>
-  </tbody>
-</table>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= t ".users_list" %></h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th><%= t ".id" %></th>
+            <th><%= t ".email" %></th>
+            <th><%= t ".full_name" %></th>
+            <th><%= t ".role" %></th>
+            <th><%= t ".date_created" %></th>
+            <th><%= t ".delete" %></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th><%= t ".id" %></th>
+            <th><%= t ".email" %></th>
+            <th><%= t ".full_name" %></th>
+            <th><%= t ".role" %></th>
+            <th><%= t ".date_created" %></th>
+            <th></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <%= render @users %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 <%== pagy_bootstrap_nav @pagy %>

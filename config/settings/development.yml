@@ -13,7 +13,7 @@ gravatar:
   height_default: 500
 
 user:
-  per_page: 5
+  per_page: 100
   avatar_width: 300
   avatar_height: 200
   small_avatar_width: 80
@@ -24,10 +24,10 @@ user:
 department:
   avatar_width: 400
   avatar_height: 300
-  per_page: 5
+  per_page: 100
 
 relationship:
-  per_page: 5
+  per_page: 100
 
 report:
   per_page: 5

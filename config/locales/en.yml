@@ -77,6 +77,7 @@ en:
       delete_failed_message: "Delete Failure"
     show:
       joined_time: "Joined %{time} ago"
+      total_department: "Total Department"
   departments:
     not_found: "Department not found"
     department:
@@ -123,10 +124,10 @@ en:
       search: "Search"
       search_title: "Search Department"
     user:
-      remove_user: "Remove User"
+      remove_user: "Remove"
       delete_confirmation: "Are you sure?"
-      remove_manager: "Remove manager"
-      set_user_manager: "Set user as manager"
+      remove_manager: "Remove Manager"
+      set_user_manager: "Set Manager"
   relationships:
     new:
       department_not_found: "Department Not Found"
@@ -221,7 +222,7 @@ en:
   notifies:
     show:
       error_message: "Something went wrong"
-      error_access: "Cam not access this page"
+      error_access: "Can not access this page"
   devise:
     sessions:
       new:

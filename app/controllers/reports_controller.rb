@@ -1,10 +1,9 @@
 class ReportsController < ApplicationController
-  before_action :logged_in_user
+  authorize_resource
   before_action :find_department, except: :destroy
   before_action :find_manager, except: %i(index show destroy)
   before_action :find_relationship, :paginate_reports, only: :index
   before_action :find_report, except: %i(index new create)
-  before_action :check_ownership, :require_unverifyed, only: %i(update destroy)
   before_action :prepare_report, only: :create
 
   def index
