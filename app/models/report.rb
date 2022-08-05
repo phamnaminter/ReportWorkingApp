@@ -2,11 +2,10 @@ class Report < ApplicationRecord
   include CreateNotify
 
   UPDATEABLE_ATTRS = [:report_date, :today_plan, :today_work,
-    :today_problem, :tomorow_plan, :to_user_id,
+    :today_problem, :tomorow_plan,
     {comments_attributes: [:report_id, :description, :user_id]}].freeze
 
   belongs_to :from_user, class_name: User.name
-  belongs_to :to_user, class_name: User.name
   belongs_to :department
   has_many :comments, dependent: :destroy
 
@@ -81,7 +80,7 @@ class Report < ApplicationRecord
   private
 
   def notify
-    create_notify to_user_id, I18n.t("to_report"),
+    create_notify from_user_id, I18n.t("to_report"),
                   routes.report_path(id: id)
   end
 end

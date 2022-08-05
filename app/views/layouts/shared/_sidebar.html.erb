@@ -9,28 +9,28 @@
     <div class="sidebar-heading">
       <%= t "report" %>
     </div>
-    <li class="nav-item <%= add_active_class users_path %>">
-      <a class="nav-link" href="<%= users_path %>">
+    <li class="nav-item <%= add_active_class new_report_path %>">
+      <a class="nav-link" href="<%= new_report_path %>">
         <i class="fas fa-fw fa-chart-area"></i>
         <span><%= t("new_report") %></span>
       </a>
     </li>
-    <li class="nav-item <%= add_active_class users_path %>">
-      <a class="nav-link" href="<%= users_path %>">
+    <li class="nav-item <%= add_active_class(reports_path) %>">
+      <a class="nav-link" href="<%= reports_path %>">
         <i class="fas fa-fw fa-table"></i>
         <span><%= t("report_list") %></span></a>
     </li>
-    <hr class="sidebar-divider d-none d-md-block">
-      <div class="sidebar-heading">
-        <%= t("department") %>
-      </div>
-    <li class="nav-item <%= add_active_class(new_relationship_path) %>">
-      <a class="nav-link" href="<%= new_relationship_path %>">
-        <i class="fas fa-fw fa-table"></i>
-        <span><%= t "manager_user" %></span></a>
-    </li>
-    <% active_context = active_link?(includes: ["new_department_path", "departments_path"]) %>
     <% if current_user.admin? %>
+      <hr class="sidebar-divider d-none d-md-block">
+        <div class="sidebar-heading">
+          <%= t "department" %>
+        </div>
+      <li class="nav-item <%= add_active_class(new_relationship_path) %>">
+        <a class="nav-link" href="<%= new_relationship_path %>">
+          <i class="fas fa-fw fa-table"></i>
+          <span><%= t "manager_user" %></span></a>
+      </li>
+      <% active_context = active_link?(includes: ["new_department_path", "departments_path"]) %>
       <li class="nav-item ">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#components" aria-expanded="true" aria-controls="components">
           <i class="fas fa-fw fa-cog"></i>

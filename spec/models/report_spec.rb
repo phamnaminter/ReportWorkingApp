@@ -19,7 +19,6 @@ RSpec.describe Report, type: :model do
 
   describe "Associations" do
     it {is_expected.to belong_to(:from_user).class_name(:User)}
-    it {is_expected.to belong_to(:to_user).class_name(:User)}
     it {is_expected.to belong_to(:department)}
     it {is_expected.to have_many(:comments).dependent(:destroy)}
   end

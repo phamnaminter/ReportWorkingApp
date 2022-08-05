@@ -22,6 +22,7 @@ import './shared/select2'
 
 $(document).on('turbolinks:load', function() {
   $(".js-example-basic-multiple").select2();
+  $(".js-example-basic-single").select2();
 });
 
 Rails.start()

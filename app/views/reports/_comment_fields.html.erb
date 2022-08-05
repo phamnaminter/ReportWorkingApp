@@ -2,5 +2,5 @@
   <%= f.label :your_comment %>
   <%= f.text_field :description, class: "form-control", placeholder: t(".your_comment") %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= link_to_remove_association t(".remove_comment"), f, class: "btn btn-danger mt-16" %>
+  <%= link_to_remove_association t(".remove_comment"), f, class: "text-danger mt-16" %>
 </div>

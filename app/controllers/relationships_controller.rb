@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-  authorize_resource
   before_action :find_relationship, only: %i(update destroy)
   before_action :paginate_users, only: :new
   before_action :relationship_params, only: :create

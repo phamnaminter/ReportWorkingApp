@@ -1,11 +1,11 @@
 class ReportsController < ApplicationController
-  before_action :logged_in_user
-  before_action :find_department, except: :destroy
-  before_action :find_manager, except: %i(index show destroy)
-  before_action :find_relationship, :paginate_reports, only: :index
+  authorize_resource
+  before_action :find_department, except: %i(destroy new index)
+  before_action :paginate_reports, only: :index
   before_action :find_report, except: %i(index new create)
   before_action :check_ownership, :require_unverifyed, only: %i(update destroy)
   before_action :prepare_report, only: :create
+  before_action :find_accessible_department, only: %i(new create edit)
 
   def index
     @filter = params[:filter]
@@ -79,17 +79,6 @@ class ReportsController < ApplicationController
     redirect_to root_path
   end
 
-  def find_relationship
-    return if current_user.admin?
-
-    @relationship = Relationship.find_by department_id: params[:department_id],
-                                         user_id: current_user.id
-    return if @relationship.present?
-
-    flash[:danger] = t ".invalid_relationship"
-    redirect_to root_path
-  end
-
   def find_report
     @report = Report.find params[:id]
   end
@@ -112,11 +101,8 @@ class ReportsController < ApplicationController
   end
 
   def find_all_reports
-    @reports = if @relationship&.manager? || current_user.admin?
-                 Report.for_manager params[:department_id]
-               else
-                 Report.for_employee current_user.id
-               end
+    @reports = Report.accessible_by(current_ability)
+                     .includes([:department, :from_user])
     filter_report
   end
 
@@ -135,7 +121,11 @@ class ReportsController < ApplicationController
   end
 
   def prepare_report
-    @report = @department.reports.build report_params
+    @report = @department.first.reports.build report_params
               .merge from_user_id: current_user.id
+  end
+
+  def find_accessible_department
+    @departments = Department.accessible_by current_ability
   end
 end
