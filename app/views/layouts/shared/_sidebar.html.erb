@@ -24,8 +24,8 @@
       <div class="sidebar-heading">
         <%= t("department") %>
       </div>
-    <li class="nav-item <%= add_active_class departments_path %>">
-      <a class="nav-link" href="<%= departments_path %>">
+    <li class="nav-item <%= add_active_class(new_relationship_path) %>">
+      <a class="nav-link" href="<%= new_relationship_path %>">
         <i class="fas fa-fw fa-table"></i>
         <span><%= t "manager_user" %></span></a>
     </li>

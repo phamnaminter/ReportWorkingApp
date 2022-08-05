@@ -1,14 +1,27 @@
 class RelationshipsController < ApplicationController
-  before_action :find_department, only: %i(new create)
-  before_action :find_user, only: :create
+  authorize_resource
   before_action :find_relationship, only: %i(update destroy)
   before_action :paginate_users, only: :new
+  before_action :relationship_params, only: :create
   Pagy::DEFAULT[:items] = Settings.relationship.per_page
 
-  def new; end
+  def new
+    @departments = Department.sort_created_at
+    @relationship = Relationship.new
+  end
 
   def create
-    @user.join_department @department
+    ActiveRecord::Base.transaction do
+      relationship_params[:department].each do |department_id|
+        next if department_id.blank?
+
+        relationship_params[:user_id].each do |user_id|
+          user = User.find(user_id)
+          department = Department.find(department_id)
+          user.join_department department
+        end
+      end
+    end
 
     flash[:success] = t ".success_message"
     redirect_back(fallback_location: root_path)
@@ -54,8 +67,7 @@ class RelationshipsController < ApplicationController
   end
 
   def paginate_users
-    @pagy, @users = pagy filter_user.includes([:avatar_attachment])
-                                    .not_in_department @department.id
+    @pagy, @users = pagy filter_user
   end
 
   def filter_user
@@ -63,5 +75,9 @@ class RelationshipsController < ApplicationController
 
     @users = User.by_email(params[:filter][:email_search])
                  .by_full_name(params[:filter][:full_name_search])
+  end
+
+  def relationship_params
+    params.require(:relationship).permit Relationship::UPDATEABLE_ATTRS
   end
 end

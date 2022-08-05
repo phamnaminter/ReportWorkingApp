@@ -1,31 +1,48 @@
 <% provide :title, @department.name %>
-<div class="center jumbotron">
-  <h1><%= @department.name %></h1>
-  <%= gravatar_for @department, Settings.department.avatar_width, Settings.department.avatar_height %>
-  <h2>
-    <%= t @department.description %>
-  </h2>
-  <%= form_tag new_relationship_path, method: :get do %>
-    <%= hidden_field_tag :department_id, "", value: @department.id, class: "form-control", placeholder: t(".email") %>
-    <% if current_user.admin? || user_manager?(current_user, @department) %>
-      <%= submit_tag t(".add_show"), name: nil, class: "btn btn-lg btn-info" %>
-      <%= link_to t(".view_reports"), department_reports_path(@department.id), method: :get, class: "btn btn-lg btn-success" %>
-    <% elsif employee?(current_user, @department) %>
-      <%= link_to t(".new_reports"), new_department_report_path(@department.id), method: :get, class: "btn btn-lg btn-primary" %>
-      <%= link_to t(".view_reports"), department_reports_path(@department.id), method: :get, class: "btn btn-lg btn-success" %>
-    <% end %>
-    <% if current_user.admin? %>
-      <%= link_to t(".delete"), @department, method: :delete,
-        data: { confirm: t(".delete_confirmation") }, class: "btn btn-lg btn-danger" %>
-    <% end %>
-  <% end %>
-</div>
-<% if @users.any? %>
-  <div>
-    <h3><%= "#{t(".total_member")} (#{@pagy.count})" %></h3>
-    <ul class="users">
-      <%= render partial: "user", collection: @users, as: :user %>
-    </ul>
-    <%== pagy_bootstrap_nav @pagy %>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= @department.name %></h6>
   </div>
-<% end %>
+  <div class="card-body">
+    <div class="text-center">
+      <%= gravatar_for @department, Settings.department.avatar_width, Settings.department.avatar_height, "img-fluid px-3 px-sm-4 mt-3 mb-4" %>
+    </div>
+    <p><%= t @department.description %></p>
+  </div>
+</div>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= "#{t(".total_member")} (#{@pagy.count})" %></h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th><%= t ".id" %></th>
+            <th><%= t ".email" %></th>
+            <th><%= t ".full_name" %></th>
+            <th><%= t ".role" %></th>
+            <th><%= t ".date_created" %></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tfoot>
+            <tr>
+              <th><%= t ".id" %></th>
+              <th><%= t ".email" %></th>
+              <th><%= t ".full_name" %></th>
+              <th><%= t ".role" %></th>
+              <th><%= t ".date_created" %></th>
+              <th></th>
+              <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+          <%= render partial: "user", collection: @users, as: :user %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
