@@ -1,8 +1,12 @@
 class User < ApplicationRecord
+  devise :database_authenticatable, :lockable,
+         :recoverable, :rememberable, :validatable
+
   include CreateNotify
 
   UPDATEABLE_ATTRS = %i(full_name email password
     password_confirmation avatar).freeze
+
   has_many :relationships, dependent: :destroy
   has_many :departments, through: :relationships
   has_many :report_sends, class_name: :Report, foreign_key: :from_user,
@@ -37,8 +41,6 @@ class User < ApplicationRecord
                            message: I18n.t(".invalid_img_type")},
             size: {less_than: Settings.image.max_size.megabytes,
                    message: I18n.t(".invalid_img_size")}
-
-  has_secure_password
 
   has_one_attached :avatar
 

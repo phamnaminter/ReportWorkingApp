@@ -3,7 +3,7 @@ RSpec.shared_examples "not logged for get method" do |action, params|
     before {get action, params: params}
 
     it "redirect login page" do
-      expect(response).to redirect_to login_path
+      expect(response).to redirect_to new_user_session_path
     end
   end
 end
@@ -11,7 +11,7 @@ end
 RSpec.shared_examples "not logged for other method" do
   context "when not login" do
     it "redirect login page" do
-      expect(response).to redirect_to login_path
+      expect(response).to redirect_to new_user_session_path
     end
   end
 end
@@ -63,7 +63,7 @@ RSpec.shared_examples "find a department" do |action, params|
   RSpec.shared_examples "find a relationship" do |action, params|
     context "when relationship is not found" do
       before do
-        log_in user_singe
+        sign_in user_singe
         init = {department_id: department.id}
         init.merge!(params) if params
         get action, params: init

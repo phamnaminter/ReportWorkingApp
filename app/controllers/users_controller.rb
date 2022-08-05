@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, except: %i(show new create)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: :destroy
+  before_action :check_empty_pw, only: :update
 
   def index; end
 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       save_avatar
       flash[:success] = t ".create_user_message"
-      redirect_to root_url
+      redirect_to root_path
     else
       flash.now[:danger] = t ".create_user_error"
       render :new
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      sign_in(@user, bypass: true)
       flash[:success] = t ".edit_success_message"
       redirect_to @user
     else
@@ -87,5 +89,13 @@ class UsersController < ApplicationController
 
   def save_avatar
     @user.avatar.attach(params[:user][:avatar]) if params[:user][:avatar]
+  end
+
+  def check_empty_pw
+    return unless params[:user][:password].blank? &&
+                  params[:user][:password_confirmation].blank?
+
+    params[:user].delete :password
+    params[:user].delete :password_confirmation
   end
 end

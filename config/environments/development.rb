@@ -62,10 +62,8 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   host = ENV["host"]
-  config.action_mailer.default_url_options = {
-    host: host,
-    protocol: "http"
-  }
+
+  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
 
   ActionMailer::Base.smtp_settings = {
     address: ENV["mail_address"],

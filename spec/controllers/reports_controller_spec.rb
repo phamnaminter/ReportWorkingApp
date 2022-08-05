@@ -27,7 +27,7 @@ RSpec.describe ReportsController, type: :controller do
 
         context "when has reports" do
           it "with reports for normal user" do
-            log_in user
+            sign_in user
             params = {
               department_id: department.id,
             }
@@ -36,7 +36,7 @@ RSpec.describe ReportsController, type: :controller do
           end
 
           it "with filter reports" do
-            log_in user
+            sign_in user
             params = {
               department_id: department.id,
               filter: {
@@ -53,7 +53,7 @@ RSpec.describe ReportsController, type: :controller do
           end
 
           it "with reports for manager" do
-            log_in user_manager
+            sign_in user_manager
             params = {department_id: department.id}
             get :index, params: params
             expect(assigns(:reports).pluck(:id)).to eq([report_1.id, report_2.id, report_3.id, report_4.id])
@@ -61,7 +61,7 @@ RSpec.describe ReportsController, type: :controller do
         end
 
         it "render index" do
-          log_in user
+          sign_in user
           params = {department_id: department.id}
           get :index, params: params
           expect(response).to render_template :index
@@ -69,7 +69,7 @@ RSpec.describe ReportsController, type: :controller do
       end
 
       context "with invalid user login" do
-        before {log_in user_singe}
+        before {sign_in user_singe}
         it_behaves_like "find a department", :index
         it_behaves_like "find a relationship", :index
       end
@@ -88,7 +88,7 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     context "when user logged" do
-      before {log_in user}
+      before {sign_in user}
 
       it_behaves_like "find a report", :show
 
@@ -117,7 +117,7 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     context "when user logged" do
-      before {log_in user}
+      before {sign_in user}
 
       it_behaves_like "find a department", :new
       it_behaves_like "find managers", :new
@@ -145,7 +145,7 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     context "when user logged" do
-      before {log_in user}
+      before {sign_in user}
 
       context "When create success" do
         before do
@@ -171,7 +171,7 @@ RSpec.describe ReportsController, type: :controller do
 
       context "create report failed" do
         before do
-          log_in user
+          sign_in user
           post :create, params: {department_id: department.id, report: {wrong: "wrong_param"}}
         end
 
@@ -190,7 +190,7 @@ RSpec.describe ReportsController, type: :controller do
     it_behaves_like "not logged for get method", "edit", {id: 1}
 
     context "when user logged" do
-      before {log_in user}
+      before {sign_in user}
 
       let(:params) do
         {
@@ -221,7 +221,7 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     context "when user logged" do
-      before {log_in user}
+      before {sign_in user}
 
       context " when update success" do
         before do
@@ -273,7 +273,7 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     context "when user logged" do
-      before {log_in user}
+      before {sign_in user}
 
       it "delete success" do
         patch :destroy, params: {id: report_1.id}
@@ -309,7 +309,7 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     context "when user logged" do
-      before {log_in user_manager}
+      before {sign_in user_manager}
 
       it "when confirm report success" do
         patch :approve, params: {
