@@ -1,10 +1,10 @@
 class ReportsController < ApplicationController
   authorize_resource
-  before_action :find_department, except: :destroy
-  before_action :find_manager, except: %i(index show destroy)
-  before_action :find_relationship, :paginate_reports, only: :index
+  before_action :find_department, except: %i(destroy new index)
+  before_action :paginate_reports, only: :index
   before_action :find_report, except: %i(index new create)
   before_action :prepare_report, only: :create
+  before_action :find_accessible_department, only: %i(new create)
 
   def index
     @filter = params[:filter]
@@ -111,11 +111,7 @@ class ReportsController < ApplicationController
   end
 
   def find_all_reports
-    @reports = if @relationship&.manager? || current_user.admin?
-                 Report.for_manager params[:department_id]
-               else
-                 Report.for_employee current_user.id
-               end
+    @reports = Report.accessible_by(current_ability).includes([:department, :from_user])
     filter_report
   end
 
@@ -134,7 +130,11 @@ class ReportsController < ApplicationController
   end
 
   def prepare_report
-    @report = @department.reports.build report_params
+    @report = @department.first.reports.build report_params
               .merge from_user_id: current_user.id
+  end
+
+  def find_accessible_department
+    @departments = Department.accessible_by current_ability
   end
 end

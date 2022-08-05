@@ -16,6 +16,10 @@ class Relationship < ApplicationRecord
     where department_id: department_id, role_type: :manager
   end)
 
+  scope :manager, (lambda do
+    where role_type: :manager
+  end)
+
   def update_role role
     return manager! if role.eql? Settings.role.manager
 

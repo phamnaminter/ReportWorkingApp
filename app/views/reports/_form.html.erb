@@ -1,24 +1,22 @@
-<%= form_for @report do |f| %>
-  <%= render "shared/error_messages", object: @report %>
-  <%= f.label :report_date %><span class="red-text"> *</span>
-  <%= f.date_field :report_date, class: "form-control" %>
-  <%= f.label :today_plan %><span class="red-text"> *</span>
-  <%= f.text_area :today_plan, class: "form-control" %>
-  <%= f.label :today_work %><span class="red-text"> *</span>
-  <%= f.text_area :today_work, class: "form-control" %>
-  <%= f.label :today_problem %><span class="red-text"> *</span>
-  <%= f.text_area :today_problem, class: "form-control" %>
-  <%= f.label :tomorow_plan %><span class="red-text"> *</span>
-  <%= f.text_area :tomorow_plan, class: "form-control" %>
-  <%= hidden_field_tag :department_id, @department.id %>
-  <%= f.label :assign_to %><span class="red-text"> *</span>
-  <%= f.collection_select :to_user_id, @managers, :user_id, :full_name, options ={:prompt =>
-      t(".no_assign")}, :class =>"form-control" %>
-  <%= f.fields_for :comments do |comment| %>
-    <%= render "comment_fields", f: comment %>
+<div class="center-form">
+  <%= form_for @report do |f| %>
+    <%= render "shared/error_messages", object: @report %>
+    <%= f.label :assign_to %><span class="text-danger"> *</span>
+    <%= collection_select :department_id, nil, @departments, :id, :name, options ={},
+                        class: "js-example-basic-single form-control" %>
+    <%= f.label :report_date %><span class="text-danger"> *</span>
+    <%= f.date_field :report_date, class: "form-control" %>
+    <%= f.label :today_plan %><span class="text-danger"> *</span>
+    <%= f.text_area :today_plan, class: "form-control" %>
+    <%= f.label :today_work %><span class="text-danger"> *</span>
+    <%= f.text_area :today_work, class: "form-control" %>
+    <%= f.label :today_problem %><span class="text-danger"> *</span>
+    <%= f.text_area :today_problem, class: "form-control" %>
+    <%= f.label :tomorow_plan %><span class="text-danger"> *</span>
+    <%= f.text_area :tomorow_plan, class: "form-control" %>
+    <div class="links">
+      <%= link_to_add_association t(".add_comment"), f, :comments, class: "mt-16" %>
+    </div>
+    <%= f.submit yield(:button_text), class: "btn btn-primary mt-16 form-control" %>
   <% end %>
-  <div class="links">
-    <%= link_to_add_association t(".add_comment"), f, :comments, class: "btn btn-success mt-16" %>
-  </div>
-  <%= f.submit yield(:button_text), class: "btn btn-primary mt-16 form-control" %>
-<% end %>
+</div>
