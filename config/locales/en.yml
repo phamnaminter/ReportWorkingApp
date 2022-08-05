@@ -39,6 +39,8 @@ en:
   logout_modal_content: "Select Logout below if you are ready to end your current session."
   cancel: "Cancel"
   hello: "Hello"
+  upload: "Upload"
+  choose_file: "Choose File"
   sessions:
     new:
       title: "Log in"
@@ -56,6 +58,7 @@ en:
     index:
       title: "Users List"
     new:
+      welcome: "Create new User"
       title: "New User"
       submit: "Create account"
     create:
@@ -86,6 +89,10 @@ en:
     index:
       title: "Departments List"
       description: "All of Departments"
+      id: "ID"
+      date_created: "Date Created"
+      last_updated: "Last Updated"
+      department_name: "Department Name"
     create:
       create_department_message: "Create department Successfully"
       create_department_error: "Create department Error"
@@ -219,6 +226,7 @@ en:
     sessions:
       new:
         sign_in: "Sign In"
+        title: "Sign In"
     unlocks:
       new:
         title: "Resend 2 unlock instructions"
