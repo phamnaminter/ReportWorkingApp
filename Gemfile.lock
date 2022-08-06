@@ -92,6 +92,7 @@ GEM
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
     crass (1.0.6)
+    csv (3.1.2)
     database_cleaner (1.99.0)
     deep_merge (1.2.2)
     devise (4.8.1)
@@ -362,6 +363,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   cocoon
   config
+  csv
   database_cleaner (~> 1.5)
   devise
   dotenv-rails
