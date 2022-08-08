@@ -9,9 +9,9 @@ class AddUserToDepartmentJob
   def create departments, users, uid_perform
     insert departments, users
   rescue ActiveRecord::RecordNotFound
-    create_notify uid_perform, t("autd_success"), nil
+    create_notify uid_perform, I18n.t("autd_success"), nil
   else
-    create_notify uid_perform, T("autd_failure"), nil
+    create_notify uid_perform, I18n.t("autd_failure"), nil
   end
 
   def insert departments, users
@@ -21,7 +21,7 @@ class AddUserToDepartmentJob
 
         users.each do |user_id|
           user = User.find(user_id)
-          department = Department.finds(department_id)
+          department = Department.find(department_id)
           user.join_department department
         end
       end

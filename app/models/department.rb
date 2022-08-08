@@ -36,4 +36,9 @@ class Department < ApplicationRecord
   def add_user user
     users << user
   end
+
+  def unreported_users_now
+    users - User.joins(:report_sends).where("reports.department_id = #{id}
+              and reports.report_date = #{Time.zone.now.strftime('%Y-%m-%d')}")
+  end
 end
