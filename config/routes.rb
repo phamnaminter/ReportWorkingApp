@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
     root "departments#index"
@@ -15,4 +17,5 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :users
+  mount Sidekiq::Web => "/sidekiq"
 end

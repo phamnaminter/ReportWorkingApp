@@ -10,19 +10,15 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      relationship_params[:department].each do |department_id|
-        next if department_id.blank?
+    AddUserToDepartmentJob.perform_async relationship_params[:department],
+                                         relationship_params[:user_id],
+                                         current_user.id
 
-        relationship_params[:user_id].each do |user_id|
-          user = User.find(user_id)
-          department = Department.find(department_id)
-          user.join_department department
-        end
-      end
-    end
+    create_notify current_user.id,
+                  t("pending_message"),
+                  new_relationship_path
 
-    flash[:success] = t ".success_message"
+    flash[:info] = t "pending_message"
     redirect_back(fallback_location: root_path)
   end
 
