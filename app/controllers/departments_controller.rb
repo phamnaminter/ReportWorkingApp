@@ -1,14 +1,14 @@
 class DepartmentsController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource
   before_action :paginate_departments, only: :index
   before_action :find_department, except: %i(index new create)
-  before_action :require_admin, except: %i(index show)
   Pagy::DEFAULT[:items] = Settings.department.per_page
 
   def index; end
 
   def show
-    @pagy, @users = pagy @department.users.includes([:avatar_attachment])
+    @pagy, @users = pagy @department.users
   end
 
   def new
@@ -64,15 +64,12 @@ class DepartmentsController < ApplicationController
   end
 
   def filter_department
-    unless params[:filter]
-      return Department.sort_created_at.includes([:avatar_attachment])
-    end
+    return Department.sort_created_at unless params[:filter]
 
     @departments = Department
                    .by_name(params[:filter][:name])
                    .by_description(params[:filter][:description])
                    .sort_created_at
-                   .includes([:avatar_attachment])
   end
 
   def find_department

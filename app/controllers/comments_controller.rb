@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  authorize_resource
   before_action :find_comment_update, only: :update
   before_action :find_comment_destroy, only: :destroy
 

@@ -18,6 +18,11 @@ import '@fortawesome/fontawesome-free/js/all'
 import datatable from 'imports-loader?define=>false!datatables.net'
 import datatableBS4 from 'imports-loader?define=>false!datatables.net-bs4'
 import './shared/sb-admin-2'
+import './shared/select2'
+
+$(document).on('turbolinks:load', function() {
+  $(".js-example-basic-multiple").select2();
+});
 
 Rails.start()
 Turbolinks.start()

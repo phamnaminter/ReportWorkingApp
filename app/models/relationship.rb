@@ -1,4 +1,6 @@
 class Relationship < ApplicationRecord
+  UPDATEABLE_ATTRS = [department: [], user_id: []].freeze
+
   include CreateNotify
 
   belongs_to :user
