@@ -21,9 +21,6 @@ RSpec.describe ReportsController, type: :controller do
 
     context "when user logged" do
       context "with normal user" do
-        before do
-          get :index
-        end
 
         context "when has reports" do
           it "with reports for normal user" do
@@ -38,7 +35,6 @@ RSpec.describe ReportsController, type: :controller do
           it "with filter reports" do
             sign_in user
             params = {
-              department_id: department.id,
               filter: {
                 id: report_1.id,
                 department: nil,
@@ -66,12 +62,6 @@ RSpec.describe ReportsController, type: :controller do
           get :index, params: params
           expect(response).to render_template :index
         end
-      end
-
-      context "with invalid user login" do
-        before {sign_in user_singe}
-        it_behaves_like "find a department", :index
-        it_behaves_like "find a relationship", :index
       end
     end
   end
@@ -119,9 +109,6 @@ RSpec.describe ReportsController, type: :controller do
     context "when user logged" do
       before {sign_in user}
 
-      it_behaves_like "find a department", :new
-      it_behaves_like "find managers", :new
-
       it "should be constructor" do
         get :new, params: {department_id: department.id}
         expect(assigns(:report)).to_not eq nil
@@ -150,7 +137,7 @@ RSpec.describe ReportsController, type: :controller do
       context "When create success" do
         before do
           post :create, params: {
-            department_id: department.id,
+            department_id: [department.id],
             report: { to_user_id: user_manager.id, report_date: "2022-08-12",
               today_plan: "test 1", today_work: "test 2", today_problem: "test 3", tomorow_plan: "test 4" }
           }
@@ -172,7 +159,7 @@ RSpec.describe ReportsController, type: :controller do
       context "create report failed" do
         before do
           sign_in user
-          post :create, params: {department_id: department.id, report: {wrong: "wrong_param"}}
+          post :create, params: {department_id: [department.id], report: {wrong: "wrong_param"}}
         end
 
         it "show flash danger" do
@@ -249,7 +236,7 @@ RSpec.describe ReportsController, type: :controller do
         before do
           patch :update, params: {
             department_id: department.id, id: report_1.id,
-            report: { to_user_id: nil, report_date: "2022-08-13",
+            report: { to_user_id: nil, report_date: "",
             today_plan: "test 1 edit", today_work: "test 2 edit", today_problem: "test 3 edit", tomorow_plan: "test 4 edit" }
           }
         end
