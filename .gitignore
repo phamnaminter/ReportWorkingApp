@@ -76,7 +76,6 @@ yarn-debug.log*
 /config/database.yml
 /test/
 
-/.vscode/
 /storage/
 
 config/settings.local.yml
