@@ -58,6 +58,12 @@
           <span><%= t "users_list" %></span></a>
       </li>
       <hr class="sidebar-divider d-none d-md-block">
+      <li class="nav-item <%= add_active_class charts_path %>">
+        <a class="nav-link" href="<%= charts_path %>">
+          <i class="fas fa-fw fa-table"></i>
+          <span><%= t ".analyze" %></span></a>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>

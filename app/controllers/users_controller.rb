@@ -68,9 +68,7 @@ class UsersController < ApplicationController
   end
 
   def filter_user
-    unless params[:filter]
-      return User.includes([:avatar_attachment]).sort_created_at
-    end
+    return User.sort_created_at unless params[:filter]
 
     @users = User.by_email(params[:filter][:email_search])
                  .by_full_name(params[:filter][:full_name_search])

@@ -1,0 +1,37 @@
+<%= render "filter" %>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= t ".summary" %></h6>
+  </div>
+  <div class="card-body">
+    <%= line_chart [
+      {name: :users, data: @users.group_by_day(:created_at, range: @start_date..@end_date).count},
+      {name: :departments, data: @departments.group_by_day(:created_at, range: @start_date..@end_date).count},
+      {name: :reports, data: @reports.group_by_day(:created_at, range: @start_date..@end_date).count}
+    ] %>
+  </div>
+</div>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= t ".new_week_report" %></h6>
+  </div>
+  <div class="card-body">
+    <%= column_chart @reports.group_by_day_of_week(:created_at, format: "%a").count %>
+  </div>
+</div>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= t "popular_name" %></h6>
+  </div>
+  <div class="card-body">
+    <%= line_chart User.group(:full_name).count %>
+  </div>
+</div>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= t "role" %></h6>
+  </div>
+  <div class="card-body">
+    <%= pie_chart User.group(:role).count %>
+  </div>
+</div>

@@ -4,18 +4,31 @@
   </a>
   <div class="collapse show" id="collapseCardExample" style="">
     <div class="card-body">
-      <%= form_tag departments_path, method: :get do %>
+      <%= search_form_for @filter do |filter| %>
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <%= text_field :filter, :name_search, value: params.dig(:filter, :name),
+          <%= filter.text_field :name_cont,
                          class: "form-control", placeholder: t(".name") %>
         </div>
         <div class="input-group mt-16">
           <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
-          <%= text_field :filter, :description_search, value: params.dig(:filter, :description),
+          <%= filter.text_field :description_cont,
                          class: "form-control", placeholder: t(".description") %>
         </div>
-        <%= submit_tag t(".search"), class: "btn btn-success mt-16" %>
+        <%= filter.label :date_created, class: "mt-16" %>
+        <div class="row">
+          <div class="input-group col-3">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
+            <%= filter.date_field :created_at_gteq,
+                          class: "form-control" %>
+          </div>
+            <div class="input-group col-3">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
+            <%= filter.date_field :created_at_lteq,
+                          class: "form-control" %>
+          </div>
+        </div>
+        <%= filter.submit t(".search"), class: "btn btn-success mt-16" %>
       <% end %>
     </div>
   </div>

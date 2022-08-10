@@ -60,16 +60,14 @@ class DepartmentsController < ApplicationController
   end
 
   def paginate_departments
-    @pagy, @departments = pagy filter_department
+    @filter = Department.ransack(params[:filter])
+    @pagy, @departments = pagy @filter.result
   end
 
   def filter_department
     return Department.sort_created_at unless params[:filter]
 
-    @departments = Department
-                   .by_name(params[:filter][:name])
-                   .by_description(params[:filter][:description])
-                   .sort_created_at
+    @departments = @filter.ransack(params[:filter]).result(distinct: true)
   end
 
   def find_department

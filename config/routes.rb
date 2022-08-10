@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     resources :relationships, only: %i(new create destroy update)
     resources :comments
     resources :notifies, only: :show
+    devise_for :users
+    resources :users
+    mount Sidekiq::Web => "/sidekiq"
+    get "charts", to: "chart#index"
   end
-  devise_for :users
-  resources :users
-  mount Sidekiq::Web => "/sidekiq"
 end

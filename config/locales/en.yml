@@ -247,3 +247,14 @@ en:
       new:
         forgot_password: "Forgot your password?"
         send_me_reset: "Send me reset password instructions"
+  chart:
+    filter:
+      period_time: "Period Time"
+      start_date: "Start Date"
+      end_date: "End date"
+      analyze: "Analyze"
+    index:
+      summary: "Summary"
+      new_week_report: "New Report this Week"
+      popular_name: "Popular Name"
+      role: "Role"

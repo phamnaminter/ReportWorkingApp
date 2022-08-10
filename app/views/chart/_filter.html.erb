@@ -1,0 +1,26 @@
+<div class="card shadow mb-4">
+  <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+  role="button" aria-expanded="true" aria-controls="collapseCardExample">
+    <h6 class="m-0 font-weight-bold text-primary">
+      <%= t ".period_time" %>
+    </h6>
+  </a>
+  <div class="collapse show" id="collapseCardExample">
+    <div class="card-body">
+    <%= form_tag "#", method: :get do %>
+      <div class="row">
+      <div class="col-3">
+        <%= label :start_date, t(".start_date") %>
+        <%= date_field :filter, :start_date, value: params.dig(:filter, :start_date), class: "form-control" %>
+      </div>
+      <div class="col-3">
+      <%= label :end_date, t(".end_date") %>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
+        <%= date_field :filter, :end_date, value: params.dig(:filter, :end_date), class: "form-control" %>
+      </div>
+      </div>
+      <%= submit_tag t(".analyze"), class: "btn btn-success mt-16" %>
+    <% end %>
+    </div>
+  </div>
+</div>

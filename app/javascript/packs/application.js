@@ -7,8 +7,6 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import Chartkick from "chartkick"
-import Chart from "chart.js"
 
 import "jquery"
 import 'popper.js'
@@ -28,16 +26,13 @@ $(document).on('turbolinks:load', function() {
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-Chartkick.use(Chart)
 
 datatable(window, $)
 datatableBS4(window, $)
 
 // Examples
 import './shared/demo/datatables-demo'
-import './shared/demo/chart-area-demo'
-import './shared/demo/chart-bar-demo'
-import './shared/demo/chart-pie-demo'
+import 'chartkick/chart.js'
 
 require("@nathanvda/cocoon")
 // Uncomment to copy all static images under ../images to the output folder and reference
