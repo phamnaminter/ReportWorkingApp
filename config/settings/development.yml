@@ -45,3 +45,5 @@ image:
   accept_format: ["image/jpeg", "image/gif", "image/png"]
   accept_format_html: "image/jpeg,image/gif,image/png"
   size_500_500: [50, 50]
+config:
+  notifies_size: 20

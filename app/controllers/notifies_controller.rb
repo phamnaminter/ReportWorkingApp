@@ -3,7 +3,7 @@ class NotifiesController < ApplicationController
   before_action :find_notify, only: :show
 
   def show
-    redirect_to @notify.link and return if @notify.read!
+    redirect_to(@notify.link || root_path) and return if @notify.read!
 
     flash[:danger] = t ".error_message"
     redirect_to root_path

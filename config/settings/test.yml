@@ -13,20 +13,21 @@ gravatar:
   height_default: 500
 
 user:
-  per_page: 5
+  per_page: 100
   avatar_width: 300
   avatar_height: 200
   small_avatar_width: 80
   small_avatar_height: 60
   tiny_avatar_height: 40
+  tiny_avatar_width: 40
 
 department:
   avatar_width: 400
   avatar_height: 300
-  per_page: 5
+  per_page: 100
 
 relationship:
-  per_page: 5
+  per_page: 100
 
 report:
   per_page: 5
@@ -44,3 +45,5 @@ image:
   accept_format: ["image/jpeg", "image/gif", "image/png"]
   accept_format_html: "image/jpeg,image/gif,image/png"
   size_500_500: [50, 50]
+config:
+  notifies_size: 20

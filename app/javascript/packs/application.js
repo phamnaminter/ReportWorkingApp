@@ -7,7 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import Chartkick from "chartkick"
+
 import Chart from "chart.js"
 
 import "jquery"
@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function() {
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-Chartkick.use(Chart)
+
 
 datatable(window, $)
 datatableBS4(window, $)

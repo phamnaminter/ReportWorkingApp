@@ -10,19 +10,10 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      relationship_params[:department].each do |department_id|
-        next if department_id.blank?
+    Relationship.insert relationship_params[:department],
+                        relationship_params[:user_id]
 
-        relationship_params[:user_id].each do |user_id|
-          user = User.find(user_id)
-          department = Department.find(department_id)
-          user.join_department department
-        end
-      end
-    end
-
-    flash[:success] = t ".success_message"
+    flash[:info] = t "autd_success"
     redirect_back(fallback_location: root_path)
   end
 

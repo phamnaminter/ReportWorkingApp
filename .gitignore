@@ -76,8 +76,6 @@ yarn-debug.log*
 /config/database.yml
 /test/
 
-/storage/
-
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
