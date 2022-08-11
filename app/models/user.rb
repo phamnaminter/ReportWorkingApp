@@ -59,6 +59,13 @@ class User < ApplicationRecord
       re.user_id = users.id and department_id = '#{department_id}' )")
   end)
 
+  scope :unreported_users_now, (lambda do |department|
+    department.users - User.joins(:report_sends).where(
+      "reports.department_id = #{department.id}
+      and reports.report_date = #{Time.zone.now.strftime('%Y-%m-%d')}"
+    )
+  end)
+
   def display_avatar width = Settings.gravatar.width_default,
     height = Settings.gravatar.height_default
     avatar.variant resize_to_limit: [width, height]

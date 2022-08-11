@@ -71,14 +71,6 @@ class ReportsController < ApplicationController
     @department = Department.find params[:department_id]
   end
 
-  def find_manager
-    @managers = Relationship.department_managers @department.id
-    return if @managers.present?
-
-    flash[:danger] = t "unprepared_manager"
-    redirect_to root_path
-  end
-
   def find_report
     @report = Report.find params[:id]
   end

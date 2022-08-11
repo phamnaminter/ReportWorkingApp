@@ -43,7 +43,6 @@ build-iPhoneSimulator/
 /doc/
 /rdoc/
 
-## Environment normalization:
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
@@ -84,3 +83,4 @@ config/environments/*.local.yml
 /storage/*
 /config/application.yml
 /public/assets/*
+report_cron_log.log

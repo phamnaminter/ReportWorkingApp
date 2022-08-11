@@ -45,6 +45,7 @@ en:
   pending_message: "Add user to department is in progress. Please wait..."
   autd_success: "Add User To Department Success. Please check it work correctly!!!"
   autd_failure: "Add User To Department Failure. please try again !!!"
+  remind_jb_msg: "Let is create to day report of %{department_name}"
   sessions:
     new:
       title: "Log in"
