@@ -1,0 +1,31 @@
+<tr>
+  <td>
+    <%= user.id %>
+  </td>
+  <td><%= link_to user.email, user %></td>
+  <td><%= link_to user.full_name, user %></td>
+  <td><%= show_role_name user, @department %></td>
+  <td><%= l user.created_at, format: :standard %></td>
+  <% if (current_user.admin? || user_manager?(current_user, @department)) && !current_user?(user) %>
+    <td>
+      <%= link_to t(".remove_user"), get_relationship(user, @department), method: :delete,
+        data: { confirm: t(".delete_confirmation") }, class: "text-danger" %>
+    </td>
+    <td>
+      <% if user_manager? user, @department%>
+        <%= form_for(get_relationship(user, @department)) do |f| %>
+          <%= hidden_field_tag :role, :employee %>
+          <%= f.submit t(".remove_manager"), class: "btn btn-warning btn-sm" %>
+        <% end %>
+      <% else %>
+        <%= form_for(get_relationship(user, @department)) do |f| %>
+          <%= hidden_field_tag :role, :manager %>
+          <%= f.submit t(".set_user_manager"), class: "btn btn-primary btn-sm" %>
+        <% end %>
+      <% end %>
+    </td>
+  <% else %>
+    <td></td>
+    <td></td>
+  <% end %>
+</tr>

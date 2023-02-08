@@ -1,0 +1,15 @@
+<tr>
+  <td>
+    <%= user.id %>
+  </td>
+  <td><%= link_to user.email, user %></td>
+  <td><%= link_to user.full_name, user %></td>
+  <td><%= t user.role %></td>
+  <td><%= l user.created_at, format: :standard %></td>
+  <td>
+    <% if current_user.admin? && !current_user?(user) %>
+      <%= link_to t(".delete"), user, method: :delete,
+          data: { confirm: t(".delete_confirmation") }, class: "text-danger" %>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,28 @@
+<div class="card shadow mb-4">
+  <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+    <h6 class="m-0 font-weight-bold text-primary"><%= t ".search_title" %></h6>
+  </a>
+  <div class="collapse show" id="collapseCardExample" style="">
+    <div class="card-body">
+      <%= form_tag reports_path, method: :get do %>
+        <div class="input-group col-md-4">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+          <%= text_field :filter, :id, value: params.dig(:filter, :id), class: "form-control", placeholder: t(".id") %>
+        </div>
+        <div class="input-group mt-16 col-md-6">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <%= text_field :filter, :name, value: params.dig(:filter, :name), class: "form-control", placeholder: t(".name") %>
+        </div>
+        <div class="input-group mt-16 col-md-4">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
+          <%= date_field :filter, :date_reported, value: params.dig(:filter, :date_reported), class: "form-control", placeholder: t(".date_reported") %>
+        </div>
+        <div class="input-group mt-16 col-md-5">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+          <%= select :filter, :status, Report.report_statuses.keys, {include_blank: true, selected: (@filter[:status] if @filter)}, class: "form-control" %>
+        </div>
+        <%= submit_tag t(".search"), class: "btn btn-success mt-16" %>
+      <% end %>
+    </div>
+  </div>
+</div>

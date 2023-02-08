@@ -1,0 +1,48 @@
+<% provide :title, @department.name %>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= @department.name %></h6>
+  </div>
+  <div class="card-body">
+    <div class="text-center">
+      <%= gravatar_for @department, Settings.department.avatar_width, Settings.department.avatar_height, "img-fluid px-3 px-sm-4 mt-3 mb-4" %>
+    </div>
+    <p><%= t @department.description %></p>
+  </div>
+</div>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= "#{t(".total_member")} (#{@pagy.count})" %></h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th><%= t ".id" %></th>
+            <th><%= t ".email" %></th>
+            <th><%= t ".full_name" %></th>
+            <th><%= t ".role" %></th>
+            <th><%= t ".date_created" %></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tfoot>
+            <tr>
+              <th><%= t ".id" %></th>
+              <th><%= t ".email" %></th>
+              <th><%= t ".full_name" %></th>
+              <th><%= t ".role" %></th>
+              <th><%= t ".date_created" %></th>
+              <th></th>
+              <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+          <%= render partial: "user", collection: @users, as: :user %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

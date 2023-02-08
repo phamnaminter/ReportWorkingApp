@@ -1,0 +1,41 @@
+<% provide :title, t(".title") %>
+<%= render "filter_form" %>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><%= t ".title" %></h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <%= form_tag "#", method: :put, remote: true, id: "checkbox-form" do %>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th><%= t ".ID" %></th>
+              <th><%= t ".department" %></th>
+              <th><%= t ".name" %></th>
+              <th><%= t ".date_reported" %></th>
+              <th><%= t ".date_created" %></th>
+              <th><%= t ".status" %></th>
+              <th><%= t ".action" %></th>
+            </tr>
+          </thead>
+          <tfoot>
+              <tr>
+                <th><%= t ".ID" %></th>
+                <th><%= t ".department" %></th>
+                <th><%= t ".name" %></th>
+                <th><%= t ".date_reported" %></th>
+                <th><%= t ".date_created" %></th>
+                <th><%= t ".status" %></th>
+                <th><%= t ".action" %></th>
+              </tr>
+          </tfoot>
+          <tbody>
+            <%= render @reports %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%== pagy_bootstrap_nav @pagy %>

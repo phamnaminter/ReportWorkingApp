@@ -1,0 +1,12 @@
+<%= form_for @comment do |f| %>
+  <%= render "shared/error_messages", object: @comment %>
+  <div class="form-inline">
+    <div class="form-group">
+      <%= f.text_field :description, class: "form-control", placeholder: t(".your_comment") %>
+      <%= hidden_field_tag :report_id, @report.id %>
+    </div>
+    <div class="form-group">
+      <%= f.submit t(".add"), class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

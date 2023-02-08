@@ -10,8 +10,13 @@
 /test/version_tmp/
 /tmp/
 
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+!/tmp/.keep
+
 # Used by dotenv library to load environment variables.
-# .env
+.env
 
 # Ignore Byebug command history file.
 .byebug_history
@@ -38,7 +43,6 @@ build-iPhoneSimulator/
 /doc/
 /rdoc/
 
-## Environment normalization:
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
@@ -54,3 +58,29 @@ build-iPhoneSimulator/
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+.framgia-ci-reports/
+.framgia-ci-result.temp.yml
+
+/config/database.yml
+/test/
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+
+/.vscode
+/storage/*
+/config/application.yml
+/public/assets/*
+report_cron_log.log

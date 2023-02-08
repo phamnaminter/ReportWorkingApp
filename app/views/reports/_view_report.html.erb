@@ -1,0 +1,27 @@
+<%= form_for @report do |f| %>
+  <%= render "shared/error_messages", object: @report %>
+  <%= f.label :report_date %>
+  <%= f.date_field :report_date, class: "form-control", disabled: true %>
+  <%= f.label :today_plan %>
+  <%= f.text_area :today_plan, class: "form-control", disabled: true %>
+  <%= f.label :today_work %>
+  <%= f.text_area :today_work, class: "form-control", disabled: true %>
+  <%= f.label :today_problem %>
+  <%= f.text_area :today_problem, class: "form-control", disabled: true %>
+  <%= f.label :tomorow_plan %>
+  <%= f.text_area :tomorow_plan, class: "form-control", disabled: true %>
+  <% if @report.unverifyed? && @report.from_user.eql?(current_user) %>
+    <%= link_to t(".edit"), edit_department_report_path(@report.department.id, @report.id), class: "btn btn-primary mt-16 float-right" %>
+    <%= link_to t(".delete"), @report, method: :delete,
+      data: { confirm: t(".delete_confirmation") }, class: "btn btn-danger mt-16 float-right mr-8" %>
+  <% end %>
+  <% if manager_role? @report %>
+    <% if @report.unverifyed? %>
+      <%= link_to t(".approve"), approve_report_path(@report.id, status: :confirmed, department_id: @department.id), method: :put,
+        class: "btn btn-primary mt-16 float-right" %>
+    <% else %>
+      <%= link_to t(".cancel"), approve_report_path(@report.id, status: :unverifyed, department_id: @department.id), method: :put,
+        class: "btn btn-danger mt-16 float-right mr-8" %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,250 @@
+en:
+  en: "English"
+  vi: "Vietnamese"
+  base_title: "Report App"
+  account: "Account"
+  profile: "Profile"
+  settings: "Settings"
+  log_out: "Logout"
+  department: "Departments"
+  user: "Users"
+  account: "Account"
+  report: "Report"
+  new_report: "New Report"
+  report_list: "Report List"
+  create_new_user: "Create User"
+  manager_user: "Manager User"
+  manager: "Manager"
+  users_list: "Users list"
+  create_new_department: "Create new department"
+  departments_list: "Departments list"
+  something_went_wrong: "Something went wrong. Please try again later"
+  not_logged: "Please Log In"
+  not_admin: "You are not allowed to access this page"
+  not_manager: "You are not allowed to access this page"
+  edit: "Edit"
+  unavaiable_data: "Unvaiable Data"
+  access_denied: "Access Denied"
+  unprepared_manager: "Department does not have any managers"
+  ownership_error: "Permission denied"
+  unverifyed_error: "Can not delete unverifyed report"
+  comment_notify: "One or more comments was added"
+  join_department: "You was added to new department"
+  role_department: "Your role was modified"
+  add_department: "You was added to %{department_name}"
+  to_report: "You was received a report"
+  welecome_create: "Welecome to Report Working App"
+  update_profile: "Your Profile has been updated, please check now"
+  copy_right: "Copyright @ Report Working 2022"
+  logout_modal_title: "Ready to Leave?"
+  logout_modal_content: "Select Logout below if you are ready to end your current session."
+  cancel: "Cancel"
+  hello: "Hello"
+  upload: "Upload"
+  choose_file: "Choose File"
+  pending_message: "Add user to department is in progress. Please wait..."
+  autd_success: "Add User To Department Success. Please check it work correctly!!!"
+  autd_failure: "Add User To Department Failure. please try again !!!"
+  remind_jb_msg: "Let is create to day report of %{department_name}"
+  sessions:
+    new:
+      title: "Log in"
+      sign_in: "Sign in"
+    create:
+      failure_message: "Can not confirm your account"
+  users:
+    not_found: "User not found"
+    user:
+      delete: "Delete"
+      delete_confirmation: "You sure?"
+      invalid_img_type: "must be a valid image format"
+      invalid_img_size: "should be less than 5MB"
+      file_size_exceed: "Maximum file size is 5MB. Please choose a smaller file."
+    index:
+      title: "Users List"
+    new:
+      welcome: "Create new User"
+      title: "New User"
+      submit: "Create account"
+    create:
+      create_user_message: "Create User Successfully"
+      create_user_error: "Create User Error"
+    edit:
+      title: "Edit Page"
+      welcome: "Edit your information"
+      change: "Change"
+      submit: "Submit"
+    update:
+      edit_success_message: "Edit Successfully"
+      edit_failure_message: "Edit Failure"
+    destroy:
+      deleted_message: "Delete Successfully"
+      delete_failed_message: "Delete Failure"
+    show:
+      joined_time: "Joined %{time} ago"
+      total_department: "Total Department"
+  departments:
+    not_found: "Department not found"
+    department:
+      delete: "Delete"
+      delete_confirmation: "You sure?"
+      invalid_img_type: "must be a valid image format"
+      invalid_img_size: "should be less than 5MB"
+      file_size_exceed: "Maximum file size is 5MB. Please choose a smaller file."
+      edit: "Edit"
+    index:
+      title: "Departments List"
+      description: "All of Departments"
+      id: "ID"
+      date_created: "Date Created"
+      last_updated: "Last Updated"
+      department_name: "Department Name"
+    create:
+      create_department_message: "Create department Successfully"
+      create_department_error: "Create department Error"
+    edit:
+      title: "Edit Page"
+      welcome: "Edit Department"
+      submit: "Submit"
+    update:
+      edit_success_message: "Edit Successfully"
+      edit_failure_message: "Edit Failure"
+    destroy:
+      deleted_message: "Delete Successfully"
+      delete_failed_message: "Delete Failure"
+    new:
+      title: "New Department"
+      submit: "Create department"
+      welcome: "New Department"
+    show:
+      delete: "Delete"
+      delete_confirmation: "You sure?"
+      total_member: "Total Members: "
+      add_show: "Add new Member"
+      view_reports: "View Reports"
+      new_reports: "New Reports"
+    departments_filter:
+      name: "Name"
+      description: "Description"
+      search: "Search"
+      search_title: "Search Department"
+    user:
+      remove_user: "Remove"
+      delete_confirmation: "Are you sure?"
+      remove_manager: "Remove Manager"
+      set_user_manager: "Set Manager"
+  relationships:
+    new:
+      department_not_found: "Department Not Found"
+    create:
+      success_message: "User has been added to the department"
+    update:
+      update_success: "User has been updated successfully"
+      update_failure: "Could not update role"
+    destroy:
+      destroy_success: "User has been deleted successfully"
+      destroy_failure: "Delete failed"
+    user:
+      add_user: "Add this user to department"
+    new:
+      title: "Add new users"
+  shared:
+    users_filter:
+      search_title: "Search user by filter"
+      email: "Email"
+      name: "Full name"
+      search: "Search"
+  reports:
+    index:
+      title: "Show all reports"
+      invalid_relationship: "Relationship not found"
+    show:
+      invalid_report: "Report not found"
+      title: "Report Information"
+    new:
+      submit: "Create Report"
+      title: "Create new report"
+      welcome: "Create new report of department"
+    create:
+      create_report_message: "Create report successfully"
+      create_report_error: "Create report failed"
+      invalid_department: "Department not found"
+      unprepared_manager: "Department does not have any managers"
+    edit:
+      submit: "Edit Report"
+    update:
+      edit_success_message: "Update Successfully"
+      edit_failure_message: "Update Failure"
+    destroy:
+      deleted_message: "Delete Successfully"
+      delete_failed_message: "Delete Failure"
+    filter_form:
+      id: "ID"
+      name: "Name"
+      department: "Department"
+      date_created: "Date Created"
+      date_reported: "Date Reported"
+      search: "Search"
+    view_report:
+      delete_confirmation: "Are you sure?"
+      edit: "Edit Report"
+      delete: "Delete Report"
+    all_comments:
+      comment_box: "Comment Box"
+      edit_comment: "Edit Comments"
+    new_comment:
+      your_comment: "Your Comment"
+      add: "Add"
+    approve:
+      update_success: "Update Success"
+      update_failure: "Update Failure"
+    comment_fields:
+      your_comment: "Your Comment"
+      add_comment: "Add Comment"
+      remove_comment: "Remove Comment"
+    form:
+      add_comment: "Add Comment"
+  comments:
+    comment:
+      edit: "Edit"
+      delete: "Delete"
+      sure: "Sure?"
+    create:
+      create_comment_message: "Create Comment Successfully"
+      create_comment_error: "Create Comment Error"
+    update:
+      error: "Can not update your comment"
+    destroy:
+      deleted_message: "Delete Successfully"
+      delete_failed_message: "Delete Failed"
+  time:
+    formats:
+      standard: "%B %d %Y"
+  notify_mailer:
+    new_notify:
+      hi: "Hi"
+      subject: "Notify From ReportWorkingApp"
+  notifies:
+    show:
+      error_message: "Something went wrong"
+      error_access: "Can not access this page"
+  devise:
+    sessions:
+      new:
+        sign_in: "Sign In"
+        title: "Sign In"
+    unlocks:
+      new:
+        title: "Resend 2 unlock instructions"
+        submit: "Resend unlock instructions"
+    shared:
+      links:
+        log_in: "Log In"
+        forgot_password: "Forgot your password?"
+        sign_up: "Sign Up"
+        instructions_lost: "Didn't receive confirmation instructions?"
+        instructions_unlocked: :"Didn't receive unlock instructions?"
+    passwords:
+      new:
+        forgot_password: "Forgot your password?"
+        send_me_reset: "Send me reset password instructions"

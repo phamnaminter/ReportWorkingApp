@@ -1,0 +1,8 @@
+<% if @comment.errors.any? %>
+  alert('<%= t ".error" %>');
+<% else %>
+  $('#comment_<%= @comment.id %>').closest(".commentText").find("#hidden_comment").val('<%= @comment.description %>'),
+  $('#comment_<%= @comment.id %>').text(decodeURIComponent('<%= @comment.description %>'))
+  $('#myModal').hide();
+  $('.modal-backdrop').hide();
+<% end %>

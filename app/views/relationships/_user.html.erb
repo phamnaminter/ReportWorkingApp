@@ -1,0 +1,12 @@
+<tr>
+  <td class="text-center">
+     <%= f.check_box :user_id, {checked: false, multiple: true}, user.id, nil %>
+  </td>
+  <td>
+    <%= user.id %>
+  </td>
+  <td><%= link_to user.email, user %></td>
+  <td><%= link_to user.full_name, user %></td>
+  <td><%= t user.role %></td>
+  <td><%= l user.created_at, format: :standard %></td>
+</tr>

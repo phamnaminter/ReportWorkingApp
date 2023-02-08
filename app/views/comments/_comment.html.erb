@@ -1,0 +1,21 @@
+<li>
+  <div class="commenterImage">
+    <%= gravatar_for comment.user, Settings.user.small_avatar_width, Settings.user.tiny_avatar_height%>
+  </div>
+  <div class="commentText">
+    <%= hidden_field_tag :hidden_comment, comment.description %>
+    <%= hidden_field_tag :comment_id, comment.id %>
+    <p><span class= <%= owner_comment comment %>>(<%= comment.user.full_name %>) </span>
+      <span id="comment_<%= comment.id %>"><%= comment.description %></span>
+    </p>
+    <span class="date sub-text"><%= time_ago_in_words comment.created_at %></span>
+    <% if action_comment_access? comment %>
+      <span>|</span>
+      <%= link_to t(".delete"), comment, method: :delete,
+          data: { confirm: t(".sure") }, class: "action-comment text-danger" %>
+      <span>|</span>
+      <span type="button" class="action-comment text-primary cursor-pointer edit_comment"
+            data-toggle="modal" data-target="#myModal"><%= t ".edit" %></span>
+    <% end %>
+  </div>
+</li>

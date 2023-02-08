@@ -1,0 +1,20 @@
+<div class="center-form">
+  <%= form_for @department do |f| %>
+    <%= render "shared/error_messages", object: @department %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control" %>
+    <%= f.label :change_avatar, class: "mt-16" %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroupFileAddon01"><%= t "upload"%></span>
+      </div>
+      <div class="custom-file">
+        <%= f.file_field :avatar, class: "file" %>
+        <label class="custom-file-label" for="department_avatar"><%= t "choose_file"%></label>
+      </div>
+    </div>
+    <%= f.submit yield(:button_text), class: "btn btn-primary mt-16" %>
+  <% end %>
+</div>

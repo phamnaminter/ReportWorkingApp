@@ -1,0 +1,31 @@
+<li class="nav-item dropdown no-arrow mx-1">
+  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+    role="button" data-toggle="dropdown"aria-haspopup="true"
+    aria-expanded="false">
+    <i class="fas fa-bell fa-fw"></i>
+    <% if @notifications.present? %>
+      <span class="badge badge-danger badge-counter">
+        <%= @notifications.unread.size %>+
+      </span>
+    <% end %>
+  </a>
+  <div aria-labelledby="alertsDropdown"
+    class="dropdown-list dropdown-menu dropdown-menu-right
+           shadow animated--grow-in">
+    <h6 class="dropdown-header">
+      <%= t "alerts_center" %>
+    </h6>
+    <% @notifications&.each do |notification| %>
+    <a class="dropdown-item d-flex align-items-center" href="<%= notify_path notification.id %>">
+      <div>
+        <div class="small text-gray-500"><%= notification.created_at %></div>
+        <% if notification.read? %>
+          <%= notification.msg %>
+        <% else %>
+          <span class="font-weight-bold"><%= notification.msg %></span>
+        <% end %>
+      </div>
+    </a>
+    <% end %>
+  </div>
+</li>

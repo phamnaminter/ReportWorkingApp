@@ -1,0 +1,25 @@
+{
+  "name": "hcm_2022_report_working",
+  "private": true,
+  "dependencies": {
+    "@nathanvda/cocoon": "^1.2.14",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.2.1",
+    "chart.js": "^2.9.4",
+    "chartkick": "^3.2.1",
+    "datatables.net-bs4": "^1.10.20",
+    "imports-loader": "^0.8.0",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.0",
+    "select2": "^4.1.0-rc.0",
+    "startbootstrap-sb-admin-2": "^4.0.7",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "@webpack-cli/serve": "^1.7.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
