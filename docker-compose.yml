@@ -1,0 +1,62 @@
+version: '3'
+services:
+  db:
+    platform: linux/amd64
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: "root"
+      MYSQL_ROOT_PASSWORD: "Aa@123456"
+    ports:
+      - '3307:3307'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - pj-network
+
+  app:
+    platform: linux/amd64
+    build: .
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && rails db:prepare && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - mysql_data:/rails_app
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      RAILS_ENV: development
+      DATABASE_USER: "root"
+      DATABASE_PASSWORD: "Aa@123456"
+      DATABASE_NAME: "hcm_2022_report_working_development"
+      DATABASE_HOSTNAME: "db"
+      REDIS_URL: redis://redis:6379/1
+    networks:
+      - pj-network
+
+  redis:
+    image: redis:6.2.6
+    command: redis-server
+    volumes:
+      - redis_data:/data
+    networks:
+      - pj-network
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  pj-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.1.0/24

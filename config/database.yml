@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  host: <%= ENV.fetch('DATABASE_HOSTNAME', 'localhost') %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DATABASE_USER", "root") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "Aa@123456") %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME", "hcm_2022_report_working_development") %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME", "hcm_2022_report_working_development") %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME", "hcm_2022_report_working_development") %>
+  username: hcm_2022_report_working
+  password: <%= ENV['HCM_2022_REPORT_WORKING_DATABASE_PASSWORD'] %>
