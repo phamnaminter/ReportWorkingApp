@@ -35,7 +35,7 @@ jobs:
         echo "IMAGE_TAG=${IMAGE_TAG}"
         echo "IMAGE_TAG_ADMIN=${IMAGE_TAG_ADMIN}"
 
-    - name: Configure AWS credentials from IAM Rolexx
+    - name: Configure AWS credentials from IAM
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: ${{ env.AWS_ROLE_ARN }}
