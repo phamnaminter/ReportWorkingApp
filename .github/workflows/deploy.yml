@@ -1,0 +1,43 @@
+name: Deploy app to AWS ECS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    outputs:
+      ecr_registry: ${{ steps.login-ecr.outputs.registry }}
+      image: ${{ steps.push-image.outputs.image }}
+      image_admin: ${{ steps.push-image.outputs.image_admin }}
+    steps:
+
+    - name: Set environment variables develop
+      run: |
+        echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
+        echo "IMAGE_TAG_ADMIN=${GITHUB_SHA:7:7}" >> $GITHUB_ENV
+        echo "ENV=dev" >> $GITHUB_ENV
+        echo "ACCOUNT_ID=${{ secrets.ACCOUNT_ID }}" >> $GITHUB_ENV
+        echo "ECR=dev-ecr" >> $GITHUB_ENV
+        echo "AWS_REGION=ap-northeast-1" >> $GITHUB_ENV
+        echo "AWS_ROLE_ARN=${{ secrets.AWS_ROLE_ARN }}" >> $GITHUB_ENV
+
+    - uses: actions/checkout@v2
+
+    - name: Use environment variables
+      run: |
+        echo "IMAGE_TAG=${IMAGE_TAG}"
+        echo "IMAGE_TAG_ADMIN=${IMAGE_TAG_ADMIN}"
+
+    - name: Configure AWS credentials from IAM Role
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.AWS_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
+        mask-aws-account-id: 'no'
