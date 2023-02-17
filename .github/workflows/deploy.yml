@@ -46,6 +46,6 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
         echo "-e '${{ secrets.CDN_KEY_PAIR_DEV }}' >> .pem/pk-${{ secrets.CDN_KEY_PAIR_ID_DEV }}.pem"
-        Dockerfile > Dockerfile_change
+        envsubst < Dockerfile > Dockerfile_change
         docker build -t $ECR_REGISTRY/$ECR:$IMAGE_TAG -f Dockerfile_change .
         echo "Build image successfully: #{$ECR_REGISTRY/$ECR:$IMAGE_TAG}"
