@@ -36,7 +36,7 @@ jobs:
         echo "IMAGE_TAG_ADMIN=${IMAGE_TAG_ADMIN}"
         echo "ACCOUNT_ID=${ACCOUNT_ID}"
         echo "AWS_ROLE_ARN=${AWS_ROLE_ARN}"
-        echo "Secret key test la ${{ secrets.ACCOUNT_ID }}"
+        echo "Secret key test la ngon ngon ${{ secrets.ACCOUNT_ID }}"
         echo "${{ secrets.AWS_ROLE_ARN }}"
 
     - name: Configure AWS credentials from IAM Role
