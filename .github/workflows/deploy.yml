@@ -55,6 +55,4 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
         docker push $ECR_REGISTRY/$ECR:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR:$IMAGE_TAG_ADMIN
         echo "::set-output name=image::$ECR_REGISTRY/$ECR:$IMAGE_TAG"
-        echo "::set-output name=image_admin::$ECR_REGISTRY/$ECR:$IMAGE_TAG_ADMIN"
