@@ -56,3 +56,56 @@ jobs:
       run: |
         docker push $ECR_REGISTRY/$ECR:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR:$IMAGE_TAG"
+  deploy_admin:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+
+    - name: Set environment variables develop
+      run: |
+        echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
+        echo "IMAGE_TAG_ADMIN=${GITHUB_SHA:7:7}" >> $GITHUB_ENV
+        echo "ENV=dev" >> $GITHUB_ENV
+        echo "ACCOUNT_ID=${{ secrets.ACCOUNT_ID }}" >> $GITHUB_ENV
+        echo "ECR=dev-ecr" >> $GITHUB_ENV
+        echo "AWS_REGION=ap-northeast-1" >> $GITHUB_ENV
+        echo "AWS_ROLE_ARN=${{ secrets.AWS_ROLE_ARN }}" >> $GITHUB_ENV
+        echo "EXECUTION_ROLE_ARN=${{ secrets.AWS_ROLE_ARN }}" >> $GITHUB_ENV
+        echo "ENV_PREFIX=/dev/" >> $GITHUB_ENV
+        echo "CLUSTER_NAME=dev-ecs-cluster" >> $GITHUB_ENV
+        echo "SERVICE_ADMIN=dev-admin-service" >> $GITHUB_ENV
+        echo "ADMIN_CONTAINER_NAME=dev-admin-container" >> $GITHUB_ENV
+        echo "ADMIN_TASK_FAMILY=dev-task-container-admin" >> $GITHUB_ENV
+        echo "CPU=512" >> $GITHUB_ENV
+        echo "MEMORY=1024" >> $GITHUB_ENV
+        echo "PORT=80" >> $GITHUB_ENV
+    - uses: actions/checkout@v2
+    - name: Configure AWS credentials from IAM Role
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.AWS_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
+        mask-aws-account-id: 'no'
+    - name: Update Task definition Admin
+      run: |
+        envsubst < deploy/taskdef-admin-template.json > taskdef-admin.json
+
+    - name: Deploy Task definition Admin
+      id: render-admin-container
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: taskdef-admin.json
+        container-name: ${{ env.ADMIN_CONTAINER_NAME }}
+        image: ${{ needs.build.outputs.image_admin }}
+
+    - name: Update ECS service Admin
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.render-admin-container.outputs.task-definition }}
+        service: ${{ env.SERVICE_ADMIN }}
+        cluster: ${{ env.CLUSTER_NAME }}
+        wait-for-service-stability: true

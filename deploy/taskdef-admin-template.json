@@ -1,0 +1,56 @@
+{
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "family": "$ADMIN_TASK_FAMILY",
+  "executionRoleArn": "$EXECUTION_ROLE_ARN",
+  "taskRoleArn": "$ADMIN_TASK_ROLE_ARN",
+  "containerDefinitions": [
+    {
+      "image": "$ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/dev-ecr:IMAGE_TAG",
+      "name": "$ADMIN_CONTAINER_NAME",
+      "mountPoints": [],
+      "logConfiguration": {
+        "options": {
+          "awslogs-group": "/ecs/$ADMIN_TASK_FAMILY",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-create-group": "true",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "logDriver": "awslogs"
+      },
+      "volumesFrom": [],
+      "cpu": 0,
+      "secrets": [
+        {
+          "valueFrom": "${ENV_PREFIX}FCM_SERVER_TOKEN",
+          "name": "FCM_SERVER_TOKEN"
+        }
+      ],
+      "entryPoint": [
+        "sh",
+        "-c"
+      ],
+      "command": [
+        "rails db:prepare && puma -C config/puma.rb -p $PORT"
+      ],
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": "$PORT",
+          "hostPort": "$PORT"
+        }
+      ],
+      "environment": [
+        {
+          "name": "RAILS_LOG_TO_STDOUT",
+          "value": "true"
+        }
+      ],
+      "essential": true
+    }
+  ],
+  "memory": "$MEMORY",
+  "cpu": "$CPU"
+}
