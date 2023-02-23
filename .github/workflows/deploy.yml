@@ -90,7 +90,7 @@ jobs:
         role-to-assume: ${{ env.AWS_ROLE_ARN }}
         aws-region: ${{ env.AWS_REGION }}
         mask-aws-account-id: 'no'
-    - name: Update Task definition Admin
+    - name: Update Task definit ion Admin
       run: |
         envsubst < deploy/taskdef-admin-template.json > taskdef-admin.json
 
