@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :users
+  resources :githubs
   mount Sidekiq::Web => "/sidekiq"
 end
