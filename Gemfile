@@ -51,7 +51,7 @@ gem "octokit", "~> 5.0"
 gem "sidekiq"
 
 gem "whenever"
-# Use Redis adapter to run Action Cable in production
+# Use Redis adapter to run Action Cable ,in production
 # gem "redis", "~> 4.0"
 # Use Active Model has_secure_password
 # gem "bcrypt", "~> 3.1.7"
