@@ -46,6 +46,8 @@ gem "csv"
 
 gem "activerecord-import"
 
+gem "octokit", "~> 5.0"
+
 gem "sidekiq"
 
 gem "whenever"
